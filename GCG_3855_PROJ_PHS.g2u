@@ -1,0 +1,727 @@
+Program.Sub.ScreenSU.Start
+Gui.Form..create
+Gui.Form..caption("Project Phase")
+Gui.Form..size(20700,12495)
+Gui.Form..minx(0)
+Gui.Form..miny(0)
+Gui.Form..position(0,0)
+Gui.Form..event(UnLoad,Form_unload)
+Gui.Form..forecolor(0)
+Gui.Form..BackColor(-2147483633)
+Gui.Form..mousepointer(0)
+Gui.Form.lbl1.create(label,"Start Month :",True,930,255,1,3975,195,True,0,Arial,8,-2147483633,0)
+Gui.Form.lbl1.defaultvalue("")
+Gui.Form.lbl2.create(label,"Starting Year",True,1050,255,1,3975,525,True,0,Arial,8,-2147483633,0)
+Gui.Form.lbl2.defaultvalue("")
+Gui.Form.lbl3.create(label,"Months ",True,690,255,1,3975,930,True,0,Arial,8,-2147483633,0)
+Gui.Form.lbl3.defaultvalue("")
+Gui.Form.txtEstMonths.create(textbox,"",True,450,300,0,5070,840,True,0,Arial,8,-2147483643,2)
+Gui.Form.txtEstMonths.numericonly(2)
+Gui.Form.txtEstMonths.defaultvalue("")
+Gui.Form.txtEstMonths.TabStop(True)
+Gui.Form.txtEstMonths.TabIndex(9)
+Gui.Form.txtEstMonths.MaxLength(3)
+Gui.Form.cmdSave.create(button)
+Gui.Form.cmdSave.caption("Save")
+Gui.Form.cmdSave.size(1245,375)
+Gui.Form.cmdSave.position(120,11535)
+Gui.Form.cmdSave.event(Click,cmdsave_click)
+Gui.Form.cmdSave.defaultvalue("")
+Gui.Form.cmdSave.TabStop(True)
+Gui.Form.cmdSave.TabIndex(16)
+Gui.Form.lbl4.create(label,"Project",True,735,255,1,120,195,True,0,Arial,8,-2147483633,0)
+Gui.Form.lbl4.defaultvalue("")
+Gui.Form.lbl5.create(label,"Phase",True,675,255,1,120,525,True,0,Arial,8,-2147483633,0)
+Gui.Form.lbl5.defaultvalue("")
+Gui.Form.txtproject.create(textbox,"",True,915,300,0,1305,75,True,0,Arial,8,-2147483643,2)
+Gui.Form.txtproject.defaultvalue("")
+Gui.Form.txtproject.MaxLength(7)
+Gui.Form.txtproject.TabStop(True)
+Gui.Form.txtproject.TabIndex(1)
+Gui.Form.txtphase.create(textbox,"",True,555,300,0,1305,465,True,0,Arial,8,-2147483643,2)
+Gui.Form.txtphase.defaultvalue("")
+Gui.Form.txtphase.MaxLength(4)
+Gui.Form.txtphase.TabStop(True)
+Gui.Form.txtphase.TabIndex(3)
+Gui.Form.txtphase.Event(LostFocus,Load_Groups_of_Project_Phase)
+Gui.Form.cmdProject.create(button)
+Gui.Form.cmdProject.caption("^")
+Gui.Form.cmdProject.size(360,330)
+Gui.Form.cmdProject.position(2235,60)
+Gui.Form.cmdProject.event(Click,cmdproject_click)
+Gui.Form.cmdProject.defaultvalue("")
+Gui.Form.cmdProject.TabStop(True)
+Gui.Form.cmdProject.TabIndex(2)
+Gui.Form.cmdPhase.create(button)
+Gui.Form.cmdPhase.caption("^")
+Gui.Form.cmdPhase.size(360,330)
+Gui.Form.cmdPhase.position(1875,450)
+Gui.Form.cmdPhase.event(Click,cmdphase_click)
+Gui.Form.cmdPhase.defaultvalue("")
+Gui.Form.cmdPhase.TabStop(True)
+Gui.Form.cmdPhase.TabIndex(4)
+Gui.Form.cmdClear.create(button)
+Gui.Form.cmdClear.caption("Clear")
+Gui.Form.cmdClear.size(900,405)
+Gui.Form.cmdClear.position(2670,30)
+Gui.Form.cmdClear.event(Click,cmdclear_click)
+Gui.Form.cmdClear.defaultvalue("")
+Gui.Form.cmdClear.TabStop(True)
+Gui.Form.cmdClear.TabIndex(5)
+Gui.Form.lbl6.create(label,"Group",True,705,315,1,165,6090,True,0,Arial,8,-2147483633,0)
+Gui.Form.lbl6.defaultvalue("")
+Gui.Form.txtGroup.create(textbox,"",True,1425,300,0,915,6030,True,0,Arial,8,-2147483643,2)
+Gui.Form.txtGroup.defaultvalue("")
+Gui.Form.txtGroup.TabStop(True)
+Gui.Form.txtGroup.TabIndex(13)
+Gui.Form.lbl8.create(label,"Eng",True,540,255,1,6660,150,True,0,Arial,8,-2147483633,0)
+Gui.Form.lbl8.defaultvalue("")
+Gui.Form.lbl9.create(label,"Prod",True,450,255,1,13500,150,True,0,Arial,8,-2147483633,0)
+Gui.Form.lbl9.defaultvalue("")
+Gui.Form.mltxtEng.create(textboxm)
+Gui.Form.mltxtEng.size(5865,1065)
+Gui.Form.mltxtEng.position(7245,60)
+Gui.Form.mltxtEng.maxLength(500)
+Gui.Form.mltxtEng.defaultvalue("")
+Gui.Form.mltxtEng.TabStop(True)
+Gui.Form.mltxtEng.TabIndex(10)
+Gui.Form.mltxtProd.create(textboxm)
+Gui.Form.mltxtProd.size(6345,1065)
+Gui.Form.mltxtProd.position(14085,60)
+Gui.Form.mltxtProd.maxLength(500)
+Gui.Form.mltxtProd.defaultvalue("")
+Gui.Form.mltxtProd.TabStop(True)
+Gui.Form.mltxtProd.TabIndex(11)
+Gui.Form.gsETC.Create(GsGridControl)
+Gui.Form.gsETC.Size(20295,5040)
+Gui.Form.gsETC.Position(135,6420)
+Gui.Form.gsETC.Event(CellValueChanged,gsETC_CellValueChanged)
+Gui.Form.gsETC.TabStop(True)
+Gui.Form.gsETC.TabIndex(15)
+Gui.Form.gsGroup.Create(GsGridControl)
+Gui.Form.gsGroup.Size(20295,4515)
+Gui.Form.gsGroup.Position(135,1365)
+Gui.Form.gsGroup.Event(RowCellClick,gsGroup_RowCellClick)
+Gui.Form.gsGroup.TabStop(True)
+Gui.Form.gsGroup.TabIndex(12)
+Gui.Form.cmdUSDPerHour.Create(Button)
+Gui.Form.cmdUSDPerHour.Size(690,375)
+Gui.Form.cmdUSDPerHour.Position(5580,5985)
+Gui.Form.cmdUSDPerHour.Caption("Set")
+Gui.Form.cmdUSDPerHour.Event(Click,cmdUSDPerHour_Click)
+Gui.Form.cmdUSDPerHour.TabStop(True)
+Gui.Form.cmdUSDPerHour.TabIndex(14)
+Gui.Form.cmdLoadGroup.Create(Button)
+Gui.Form.cmdLoadGroup.Size(1140,375)
+Gui.Form.cmdLoadGroup.Position(2730,450)
+Gui.Form.cmdLoadGroup.Caption("Load Group")
+Gui.Form.cmdLoadGroup.Event(Click,Load_Groups_of_Project_Phase)
+Gui.Form.cmdLoadGroup.TabStop(True)
+Gui.Form.cmdLoadGroup.TabIndex(6)
+Gui.Form.cmdLoadGroup.Visible(False)
+Gui.Form.lbl7.Create(Label,"$$/Hour:",True,750,255,1,6345,6120,True,0,"Arial",8,-2147483633,0)
+Gui.Form.lbl7.DefaultValue("")
+Gui.Form.ddlMonth.Create(DropDownList)
+Gui.Form.ddlMonth.Size(900,330)
+Gui.Form.ddlMonth.Position(5070,60)
+Gui.Form.ddlMonth.Event(Click,Check_If_Before_Current_Month)
+Gui.Form.ddlMonth.TabStop(True)
+Gui.Form.ddlMonth.TabIndex(7)
+Gui.Form.ddlYear.Create(DropDownList)
+Gui.Form.ddlYear.Size(885,330)
+Gui.Form.ddlYear.Position(5070,450)
+Gui.Form.ddlYear.Event(Click,Check_If_Before_Current_Month)
+Gui.Form.ddlYear.TabStop(True)
+Gui.Form.ddlYear.TabIndex(8)
+Gui.Form.lblUSDPerHour.Create(Label,"",True,690,255,0,7050,6105,True,1,"Arial",8,-2147483646,0)
+Gui.Form.lbl10.Create(Label,"Notes",True,540,255,1,6660,435,True,0,"Arial",8,-2147483633,0)
+Gui.Form.lbl10.DefaultValue("")
+Gui.Form.lbl11.Create(Label,"Notes",True,540,255,1,13500,435,True,0,"Arial",8,-2147483633,0)
+Gui.Form.lbl11.DefaultValue("")
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+'BN, Feb 20, 2018
+'Project description is at the bottom
+'BN, Feb 2019 modified to version 2. Please see the change in 'New specs for Version 2.zip'
+F.Intrinsic.Control.Try
+v.Local..BulkDeclareLong(iCnt,iYear,iYearEnd,iMonth)
+V.Local.sError.Declare
+
+f.ODBC.Connection!conx.OpenCompanyConnection(600)
+
+'Populate Comboboxes: Month and Year
+f.Intrinsic.Control.BlockEvents
+'Month
+F.Intrinsic.Date.Month(V.Ambient.Date,V.Local.iMonth)
+F.Intrinsic.Control.for(V.Local.iCnt,1,12,1)
+	gui.Form.ddlMonth.AddItem(V.Local.iCnt)
+F.Intrinsic.Control.Next(V.Local.iCnt)
+gui.Form.ddlMonth.Text(v.Local.iMonth)
+'Year
+F.Intrinsic.Date.year(V.Ambient.Date,V.Local.iYear)
+f.Intrinsic.Math.Add(v.Local.iYear,20,v.Local.iYearEnd)
+F.Intrinsic.Control.for(V.Local.iCnt,V.Local.iYear,v.Local.iYearEnd,1)
+	gui.Form.ddlYear.AddItem(V.Local.iCnt)
+F.Intrinsic.Control.Next(V.Local.iCnt)
+gui.Form.ddlYear.Text(v.Local.iYear)
+f.Intrinsic.Control.UnBlockEvents
+
+'0 - None		1 - Top			2 - Bottom		4 - Left		8 - Right		
+gui.Form.gsGroup.anchor(13)
+gui.Form.gsETC.anchor(15)
+gui.Form.mltxtProd.anchor(13)
+gui.Form.cmdSave.Anchor(6)
+gui.Form..Show
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)	
+F.Intrinsic.Control.EndTry
+Program.Sub.Main.End
+
+Program.Sub.Check_If_Before_Current_Month.Start
+f.Intrinsic.Control.Try
+v.Local.sError.Declare
+v.Local..BulkDeclareDate(dStart,dCheck)
+v.Local..BulkDeclareLong(iAfterCurrentMonthChecked,iCurrentMonth,iCurrentYear)
+
+F.Intrinsic.Date.Month(V.Ambient.Date,V.Local.iCurrentMonth)
+F.Intrinsic.Date.year(V.Ambient.Date,V.Local.iCurrentYear)
+F.Intrinsic.Date.DateSerial(v.Local.iCurrentYear,v.Local.iCurrentMonth,1,v.Local.dCheck)
+F.Intrinsic.Date.DateSerial(v.Screen.Form!ddlYear.Text,v.Screen.Form!ddlMonth.Text,1,v.Local.dStart)
+
+f.Intrinsic.Control.If(v.Local.dStart,<,v.local.dCheck)
+	f.Intrinsic.UI.Msgbox("Month before current month is not allowed","Select Start Month")
+	v.Local.iAfterCurrentMonthChecked.Set(1)
+f.Intrinsic.Control.EndIf
+F.Intrinsic.Variable.AddRV("AfterCurrentMonthChecked",v.Local.iAfterCurrentMonthChecked)
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(v.Local.sError)	
+F.Intrinsic.Control.EndTry
+Program.Sub.Check_If_Before_Current_Month.End
+
+Program.Sub.cmdproject_click.Start
+'Browse project number
+F.Intrinsic.Control.Try
+v.Local..BulkDeclareString(sError,sSql,sRet)
+
+F.Intrinsic.UI.SetBrowserHotTypeAhead(True)
+F.Intrinsic.UI.Browser("Select a Project","conx","Select PROJECT, DESCR, Customer from V_PROJECT_MASTER Order By Project","Project*!*Description*!*Customer","1000*!*2000*!*800",V.Local.sRet)
+F.Intrinsic.Control.If(V.Local.sRet.IsCancel,=,False)
+	F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+	gui.Form.txtproject.text(V.Local.sRet(0).trim)
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)	
+F.Intrinsic.Control.EndTry
+Program.Sub.cmdproject_click.End
+
+Program.Sub.cmdphase_click.Start
+'Browse Phase 
+F.Intrinsic.Control.Try
+v.Local..BulkDeclareString(sError,sSql,sRet)
+
+F.Intrinsic.UI.SetBrowserHotTypeAhead(True)
+F.Intrinsic.String.Build("select phase,descr,date_created from v_PROJECT_PHASE where LTRIM(RTRIM(PROJECT)) = '{0}' order by date_created",V.Screen.Form!txtproject.Text.Trim,V.Local.sSql)
+F.Intrinsic.UI.Browser("Select a Phase","conx",V.Local.sSql,"Phase*!*Description*!*Date","900*!*3500*!*1900",V.Local.sRet)
+F.Intrinsic.Control.If(V.Local.sRet.IsCancel,=,False)
+	F.Intrinsic.String.Split(V.Local.sRet,"*!*",V.Local.sRet)
+	gui.Form.txtphase.text(V.Local.sRet(0).trim)	
+	gui.Form.txtphase.SetFocus
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)	
+F.Intrinsic.Control.EndTry
+Program.Sub.cmdphase_click.End
+
+Program.Sub.Load_Groups_of_Project_Phase.Start
+'Load Comments and Groups based on the Project number and Phase
+F.Intrinsic.Control.Try
+v.Local..BulkDeclareString(sSQL,sError,sRet)
+
+gui.Form.txtGroup.Text("")
+gui.Form.lblUSDPerHour.Caption("")
+gui.Form.mltxtEng.Text("")
+gui.Form.mltxtProd.Text("")
+
+'Clear gsETC
+F.Intrinsic.Control.If(V.DataTable.ETC.Exists,=,True)
+	gui.Form.gsETC.ClearRows("ETC_GV")	
+	F.Data.DataTable.Close("ETC")
+F.Intrinsic.Control.EndIf
+
+'Populate the Comments
+gui.Form.mltxtProd.Text("")
+gui.Form.mltxtEng.Text("")
+f.Intrinsic.String.Build("Select Prod_Comments,Eng_Comments from GCG_3855_PROJ_PHS where ltrim(rtrim(Project)) = '{0}' and ltrim(rtrim(Phase)) = '{1}'",V.Screen.Form!txtproject.text.Trim,V.Screen.Form!txtphase.Text.Trim,v.Local.sSQL)
+f.ODBC.Connection!conx.ExecuteAndReturn(v.Local.sSQL,v.Local.sRet)
+f.Intrinsic.Control.If(v.Local.sRet,<>,"")
+	f.Intrinsic.String.Split(v.Local.sRet,"*!*",v.Local.sRet)
+	gui.Form.mltxtProd.Text(v.Local.sRet(0))
+	gui.Form.mltxtEng.Text(v.Local.sRet(1))
+f.Intrinsic.Control.EndIf
+
+'Populate gsGroup
+F.Intrinsic.Control.If(V.DataTable.GROUP.Exists,=,True)
+	F.Data.DataTable.Close("GROUP")
+F.Intrinsic.Control.EndIf
+f.Intrinsic.String.Build("select f_Group as ETC_Group,STD_LABOR_RATE as StdLaborRate,CUR_OUTS as TotalEstOutside,Cur_SALES as TotalEstRev,ACT_LABR as ActualLabor,ACT_HOURS as ActualHours, CUR_MATL as TotalEstMaterial, CUR_LABR TotalEstLabor, CUR_HOURS as TotalEstHrs,ACT_MATL as ActualMaterial,ACT_OUTS AS ActualOutside,'Load ETC' as LoadETC  from V_PROJECT_CURR_BUDG where LTRIM(RTRIM(PROJECT)) = '{0}' and  LTRIM(RTRIM(PHASE)) = '{1}' ORDER BY F_GROUP",V.Screen.Form!txtproject.Text.Trim,V.Screen.Form!txtphase.Text.Trim,V.Local.ssql)
+f.Data.DataTable.CreateFromSQL("GROUP","conx",v.Local.ssql,true)
+gui.Form.gsGroup.AddGridviewFromDatatable("GROUP_GV","GROUP")
+'Format gsGroup
+gui.Form.gsGroup.SuspendLayout()
+gui.Form.gsGroup.SetGridViewProperty("GROUP_GV","MultiSelect",True)
+gui.Form.gsGroup.SetGridViewProperty("GROUP_GV","AllowSort",True)
+gui.Form.gsGroup.SetGridViewProperty("GROUP_GV","AllowFilter",True)
+gui.Form.gsGroup.SetGridViewProperty("GROUP_GV","OptionsDetailShowDetailTabs",True)
+gui.Form.gsGroup.SetGridViewProperty("GROUP_GV","OptionsViewShowGroupPanel",True)
+gui.Form.gsGroup.SetGridViewProperty("GROUP_GV","EnableAppearanceOddRow",True)
+'VisibleIndex
+f.Intrinsic.Control.CallSub(FormatBulk,"GS","gsGroup","GV","GROUP_GV","sInputColumns","ETC_Group,StdLaborRate,TotalEstHrs,TotalEstLabor,TotalEstMaterial,TotalEstOutside,TotalEstRev,ActualHours,ActualLabor,ActualMaterial,ActualOutside","sProperty","VisibleIndex")
+'Caption
+f.Intrinsic.Control.CallSub(FormatBulk,"GS","gsGroup","GV","GROUP_GV","sInputColumns","ETC_Group@!@Group,StdLaborRate@!@Standard Labor Rate,TotalEstHrs@!@Budget Hours,TotalEstLabor@!@Budget Labor,TotalEstMaterial@!@Budget Material,TotalEstOutside@!@Budget Outside,ActualHours@!@Actual Hours,ActualLabor@!@Actual Labor,TotalEstRev@!@Budget Revenue,LoadETC@!@Load ETC,ActualMaterial@!@Actual Material,ActualOutside@!@Actual Outside","sProperty","Caption")
+'HeaderFontBold
+f.Intrinsic.Control.CallSub(FormatBulk,"GS","gsGroup","GV","GROUP_GV","sInputColumns","ETC_Group,StdLaborRate,TotalEstHrs,TotalEstLabor,TotalEstMaterial,TotalEstOutside,ActualHours,ActualLabor,TotalEstRev,ActualMaterial,ActualOutside,LoadETC","sProperty","HeaderFontBold")
+'HeaderAllign_Far
+f.Intrinsic.Control.CallSub(FormatBulk,"GS","gsGroup","GV","GROUP_GV","sInputColumns","StdLaborRate,TotalEstHrs,TotalEstLabor,TotalEstMaterial,TotalEstOutside,ActualHours,ActualLabor,TotalEstRev,ActualMaterial,ActualOutside","sProperty","HeaderAllign_Far")
+gui.Form.gsGroup.SetColumnProperty("GROUP_GV","LoadETC","HeaderHAlignment","center")
+'For_RowCellClick
+f.Intrinsic.Control.CallSub(FormatBulk,"GS","gsGroup","GV","GROUP_GV","sInputColumns","LoadETC","sProperty","For_RowCellClick")
+gui.Form.gsGroup.ColumnEdit("GROUP_GV","LoadETC","editorbutton","Load ETC")
+'DisplayCustomNumeric
+f.Intrinsic.Control.CallSub(FormatBulk,"GS","gsGroup","GV","GROUP_GV","sInputColumns","StdLaborRate,TotalEstHrs,TotalEstLabor,TotalEstMaterial,TotalEstOutside,ActualHours,ActualLabor,TotalEstRev,ActualMaterial,ActualOutside","sProperty","DisplayCustomNumeric")
+'AddSummaryItem
+f.Intrinsic.Control.CallSub(FormatBulk,"GS","gsGroup","GV","GROUP_GV","sInputColumns","TotalEstLabor,TotalEstMaterial,TotalEstOutside,ActualLabor,TotalEstRev,ActualMaterial,ActualOutside","sProperty","AddSummaryItem")
+Gui.Form.gsGroup.AddSummaryItem("GROUP_GV","TotalEstHrs","TOTAL_TotalEstHrs","Sum","hrs ","","n")
+Gui.Form.gsGroup.AddSummaryItem("GROUP_GV","ActualHours","TOTAL_ActualHours","Sum","hrs ","","n")
+gui.Form.gsGroup.ResumeLayout()
+gui.Form.gsGroup.MainView("GROUP_GV")
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)	
+F.Intrinsic.Control.EndTry
+Program.Sub.Load_Groups_of_Project_Phase.End
+
+Program.Sub.gsGroup_RowCellClick.Start
+F.Intrinsic.Control.Try
+v.Local..BulkDeclareString(sError,sSql,sStartDate,sEndDate,sHold)
+v.Local.sStart.Declare
+v.Local.sEnd.Declare
+v.Local.sFilter.Declare
+v.Local..BulkDeclarelong(iCnt,iWidth,iMonthHold,iYearHold,iStartMonth,iEndMonth)
+v.Local..BulkDeclareDate(dStartDate,dEndDate,dHold)
+v.Local.fHold.Declare
+v.Local.bNumeric.Declare
+
+'If Load ETC buttons on every row from the gsGroup are clicked
+F.Intrinsic.Control.If(V.Args.Column,=,"LoadETC")
+	'Validate, these fields must be valid before processing
+	F.Intrinsic.Control.If(V.Screen.Form!txtproject.Text.Trim,=,"")
+		F.Intrinsic.UI.Msgbox("Project  not valid")
+		gui.Form.txtproject.SetFocus
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+	
+	F.Intrinsic.Control.If(V.Screen.Form!txtphase.Text.Trim,=,"")
+		F.Intrinsic.UI.Msgbox("Phase not valid")
+		gui.Form.txtphase.SetFocus
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf
+	
+	f.Intrinsic.Control.CallSub("Check_If_Before_Current_Month")
+	f.Intrinsic.Control.If(v.Args.AfterCurrentMonthChecked,=,1)
+		f.Intrinsic.Control.ExitSub
+	f.Intrinsic.Control.EndIf
+	
+	F.Intrinsic.Control.If(V.Screen.Form!txtEstMonths.text,=,"")
+		F.Intrinsic.UI.Msgbox("Months not valid")
+		gui.Form.txtEstMonths.SetFocus
+		F.Intrinsic.Control.ExitSub
+	F.Intrinsic.Control.EndIf	
+	
+	'Get the current Labor rate: if ActualLabor & ActualHours have values then = ActualLabor/ActualHours, else  = StdLaborRate 
+	f.Intrinsic.Control.If(v.DataTable.GROUP(v.Args.RowIndex).ActualHours!FieldValFloat,<>,0,and,v.DataTable.GROUP(v.Args.RowIndex).ActualLabor!FieldValFloat,<>,0)
+		f.Intrinsic.Math.Div(v.DataTable.GROUP(v.Args.RowIndex).ActualLabor!FieldValFloat,v.DataTable.GROUP(v.Args.RowIndex).ActualHours!FieldValFloat,v.Local.fHold)
+		f.Intrinsic.String.Format(v.Local.fHold,"#0.00",v.Local.sHold)
+	f.Intrinsic.Control.else	
+		f.Intrinsic.String.Format(v.DataTable.GROUP(v.Args.RowIndex).StdLaborRate!FieldValFloat,"#0.00",v.Local.sHold)
+	f.Intrinsic.Control.EndIf
+	gui.Form.lblUSDPerHour.Caption(v.Local.sHold)
+	
+	'Create the ETC1 having all the months specified
+	gui.Form.txtGroup.text(v.DataTable.Group(v.Args.rowindex).ETC_Group.fieldvaltrim)
+	f.Intrinsic.Control.If(v.DataTable.ETC1.Exists)
+		f.Data.DataTable.Close("ETC1")
+	f.Intrinsic.Control.EndIf	
+	f.Data.DataTable.CreateFromSQL("ETC1","conx","Select * from GCG_3855_ETC where LTRIM(RTRIM(PROJECT)) = 'XXXXXXXXXX'",true)
+
+	'Calculate Start and End Date
+	F.Intrinsic.String.Build("{0}/01/{1}",V.Screen.Form!ddlMonth.Text,V.Screen.Form!ddlYear.Text,V.Local.dStartDate)	
+	F.Intrinsic.Math.Sub(V.Screen.Form!txtEstMonths.Text,1,V.Local.iWidth)
+	f.Intrinsic.Control.For(v.Local.iCnt,0,v.Local.iWidth,1)
+		f.Intrinsic.Control.If(v.Local.iCnt,=,0)
+			v.Local.dHold.Set(V.Local.dStartDate)
+		f.Intrinsic.Control.Else
+			F.intrinsic.date.dateadd("m",1,V.Local.dHold,v.Local.dHold)
+		f.Intrinsic.Control.EndIf		
+		F.Intrinsic.Date.Month(v.Local.dHold,v.Local.iMonthHold)
+		F.Intrinsic.Date.Year(v.Local.dHold,v.Local.iYearHold)
+		f.Data.DataTable.AddRow("ETC1","ETC_Month",v.Local.iMonthHold,"ETC_Year",v.Local.iYearHold)		
+	f.Intrinsic.Control.Next(v.Local.iCnt)	
+	v.Local.dEndDate.Set(v.Local.dHold)	
+	
+	'Search the already saved data from the custom table GCG_3855_ETC within those month range and join the ETC1
+	F.Intrinsic.Date.Month(v.Local.dStartDate,v.Local.iStartMonth)
+	F.Intrinsic.Date.Month(v.Local.dEndDate,v.Local.iEndMonth)
+	
+	f.Intrinsic.String.Format(v.Local.dStartDate,"YYYY-MM-DD",v.Local.sStartDate)
+	f.Intrinsic.String.Format(v.Local.dStartDate,"YYYYMMDD",v.Local.sStart)
+	f.Intrinsic.String.Format(v.Local.dEndDate,"YYYY-MM-DD",v.Local.sEndDate)
+	f.Intrinsic.String.Format(v.Local.dEndDate,"YYYYMMDD",v.Local.sEnd)
+	f.Intrinsic.String.Build("Select * from GCG_3855_ETC where LTRIM(RTRIM(PROJECT)) = '{0}' and  LTRIM(RTRIM(PHASE)) = '{1}' and ETC_Group = '{2}' and (FDoMDate2  between {3} and {4})",V.Screen.Form!txtproject.Text.Trim,V.Screen.Form!txtphase.Text.Trim,v.DataTable.Group(v.Args.rowindex).ETC_Group.fieldvaltrim,v.Local.sStart,v.Local.sEnd,V.Local.ssql)	
+	f.Intrinsic.Control.If(v.DataTable.ETC_From_DB.Exists)
+		f.Data.DataTable.Close("ETC_From_DB")
+	f.Intrinsic.Control.EndIf	
+	f.Data.DataTable.CreateFromSQL("ETC_From_DB","conx",v.Local.sSQL,true)
+'	f.Intrinsic.String.Build("FDoMDate >= #{0}# and FDoMDate <= #{1}#",v.Local.sStart,v.Local.sEnd,v.Local.sFilter)
+'	f.Data.DataView.Create("ETC_From_DB","ETC_From'_DB_DV",22,v.Local.sFilter,"")
+'	
+	'Create ETC table which is the join of ETC1 and ETC_From_DB
+	f.Intrinsic.Control.If(v.DataTable.ETC.Exists)
+		f.Data.DataTable.Close("ETC")
+	f.Intrinsic.Control.EndIf	
+	F.Data.Linq.Join("LeftJoin","datatable","ETC1*!*E1","datatable","ETC_From_DB*!*E2","E1.ETC_Month = E2.ETC_Month and E1.ETC_Year = E2.ETC_Year","E1.ETC_Month*!*E1.ETC_Year*!*E2.ETC_Group*!*E2.ETC_Hour*!*E2.ETC_DollarPerHour*!*E2.ETC_Labor*!*E2.ETC_Material*!*E2.ETC_Outside*!*E2.ETC_Value","", "","","ETC",True)	
+	F.Data.DataTable.AddColumn("ETC","PROJECT","String",v.Screen.Form!txtproject.Text.Trim)
+	F.Data.DataTable.AddColumn("ETC","PHASE","String",v.Screen.Form!txtphase.Text.Trim)	
+	F.Data.DataTable.SetValue("ETC",-1,"ETC_Group",v.DataTable.Group(v.Args.rowindex).ETC_Group.fieldvaltrim)	
+	F.Data.DataTable.AddExpressionColumn("ETC","Year","String","ETC_Year")
+	F.Data.DataTable.AddExpressionColumn("ETC","Month","String","")
+	F.Data.DataTable.SetValueFormat("ETC",-1,"ETC_Month","Month","0#")
+	F.Data.DataTable.AddExpressionColumn("ETC","Year_Month","String","'m' + Year + '_' + Month")
+	
+	gui.Form.gsETC.AddGridviewFromDatatable("ETC_GV","ETC")	
+		
+	'Format gsETC
+	gui.Form.gsETC.SuspendLayout()
+	gui.Form.gsETC.SetGridViewProperty("ETC_GV","MultiSelect",True)
+	gui.Form.gsETC.setGridViewProperty("ETC_GV","AllowSort",True)
+	gui.Form.gsETC.setGridViewProperty("ETC_GV","AllowFilter",True)
+	gui.Form.gsETC.setGridViewProperty("ETC_GV","OptionsDetailShowDetailTabs",False)
+	gui.Form.gsETC.setGridViewProperty("ETC_GV","OptionsViewShowGroupPanel",True)
+	gui.Form.gsETC.SetGridViewProperty("ETC_GV","EnableAppearanceOddRow",True)	
+	'VisibleIndex
+	f.Intrinsic.Control.CallSub(FormatBulk,"GS","gsETC","GV","ETC_GV","sInputColumns","ETC_Year,ETC_Month,ETC_DollarPerHour,ETC_Hour,ETC_Labor,ETC_Material,ETC_Outside","sProperty","VisibleIndex")
+	'Caption
+	f.Intrinsic.Control.CallSub(FormatBulk,"GS","gsETC","GV","ETC_GV","sInputColumns","ETC_Outside@!@Outside,ETC_Month@!@Month,ETC_Year@!@Year,ETC_Hour@!@Hours,ETC_DollarPerHour@!@$$/Hour,ETC_Labor@!@Labor,ETC_Material@!@Material,ETC_Value@!@ETC","sProperty","Caption")	
+	'HeaderAllign_Far
+	f.Intrinsic.Control.CallSub(FormatBulk,"GS","gsETC","GV","ETC_GV","sInputColumns","ETC_Month,ETC_Year,ETC_DollarPerHour,ETC_Hour,ETC_Labor,ETC_Material,ETC_Outside,ETC_Value","sProperty","HeaderAllign_Far")
+	'HeaderFontBold
+	f.Intrinsic.Control.CallSub(FormatBulk,"GS","gsETC","GV","ETC_GV","sInputColumns","ETC_Month,ETC_Year,ETC_Hour,ETC_DollarPerHour,ETC_Labor,ETC_Material,ETC_Outside,ETC_Value","sProperty","HeaderFontBold")
+	'Editable
+	f.Intrinsic.Control.CallSub(FormatBulk,"GS","gsETC","GV","ETC_GV","sInputColumns","ETC_Hour,ETC_DollarPerHour,ETC_Labor,ETC_Material,ETC_Outside,ETC_Value","sProperty","Editable")
+	'Invisible
+	f.Intrinsic.Control.CallSub(FormatBulk,"GS","gsETC","GV","ETC_GV","sInputColumns","PROJECT,PHASE,ETC_Group,Year_Month,Year,Month","sProperty","Invisible")
+	'DisplayCustomNumeric
+	f.Intrinsic.Control.CallSub(FormatBulk,"GS","gsETC","GV","ETC_GV","sInputColumns","ETC_DollarPerHour,ETC_Hour,ETC_Labor,ETC_Material,ETC_Outside,ETC_Value","sProperty","DisplayCustomNumeric")
+	'AddSummaryItem
+	f.Intrinsic.Control.CallSub(FormatBulk,"GS","gsETC","GV","ETC_GV","sInputColumns","ETC_Labor,ETC_Material,ETC_Outside,ETC_Value","sProperty","AddSummaryItem")
+	Gui.Form.gsETC.AddSummaryItem("ETC_GV","ETC_Hour","TOTAL_ETC_Hour","Sum","hrs ","","n")	
+	gui.Form.gsETC.ResumeLayout()
+	gui.Form.gsETC.MainView("ETC_GV")
+			
+f.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)	
+F.Intrinsic.Control.EndTry
+Program.Sub.gsGroup_RowCellClick.End
+
+Program.Sub.FormatBulk.Start
+F.Intrinsic.Control.Try
+V.Local..BulkDeclareString(sError,sColumns,sHold)
+v.Local.iCnt.Declare
+
+f.Intrinsic.String.Split(v.Args.sInputColumns,",",v.Local.sColumns)
+f.Intrinsic.Control.For(v.Local.iCnt,0,v.Local.sColumns.UBound,1)
+	F.Intrinsic.Control.SelectCase(v.Args.sProperty)
+		F.Intrinsic.Control.Case("Width")
+			gui.Form.[v.Args.GS].SetColumnProperty(v.Args.GV,v.Local.sColumns(v.Local.iCnt),"MinWidth",v.Args.sWidth)
+			gui.Form.[v.Args.GS].SetColumnProperty(v.Args.GV,v.Local.sColumns(v.Local.iCnt),"MaxWidth",v.Args.sWidth)	
+		F.Intrinsic.Control.Case("Invisible")
+			gui.Form.[v.Args.GS].SetColumnProperty(v.Args.GV,v.Local.sColumns(v.Local.iCnt),"Visible",False)
+		F.Intrinsic.Control.Case("VisibleIndex")
+			gui.Form.[v.Args.GS].SetColumnProperty(v.Args.GV,v.Local.sColumns(v.Local.iCnt),"VisibleIndex",v.Local.iCnt)
+		F.Intrinsic.Control.Case("HeaderFontBold")
+			gui.Form.[v.Args.GS].SetColumnProperty(v.Args.GV,V.Local.sColumns(V.Local.iCnt),"HeaderFontBold",True)
+		F.Intrinsic.Control.Case("DisplayCustomNumeric")
+			gui.Form.[v.Args.GS].SetColumnProperty(v.Args.GV,v.Local.sColumns(v.Local.iCnt),"DisplayCustomNumeric","###,###,####.00")
+		F.Intrinsic.Control.Case("Caption")
+			f.Intrinsic.String.Split(v.Local.sColumns(v.Local.iCnt),"@!@",v.Local.sHold)
+			gui.Form.[v.Args.GS].SetColumnProperty(v.Args.GV,v.Local.sHold(0),"Caption",v.Local.sHold(1))
+		F.Intrinsic.Control.Case("HeaderAllign_Far")
+			gui.Form.[v.Args.GS].SetColumnProperty(v.Args.GV,v.Local.sColumns(v.Local.iCnt),"HeaderHAlignment","Far")
+		F.Intrinsic.Control.Case("Editable")		
+			gui.Form.[v.Args.GS].SetColumnProperty(v.Args.GV,v.Local.sColumns(v.Local.iCnt),"AllowEdit","True")
+			gui.Form.[v.Args.GS].SetColumnProperty(v.Args.GV,v.Local.sColumns(v.Local.iCnt),"ReadOnly","False")
+		F.Intrinsic.Control.Case("For_RowCellClick")
+			gui.Form.[v.Args.GS].SetColumnProperty(v.Args.GV,v.Local.sColumns(v.Local.iCnt),"AllowEdit","False")
+			gui.Form.[v.Args.GS].SetColumnProperty(v.Args.GV,v.Local.sColumns(v.Local.iCnt),"ReadOnly","True")
+		f.Intrinsic.Control.Case("AddSummaryItem")
+			f.Intrinsic.String.Build("Total_{0}",v.Args.GV,v.Local.sColumns(v.Local.iCnt),v.Local.sHold)
+			Gui.Form.[v.Args.GS].AddSummaryItem(v.Args.GV,v.Local.sColumns(v.Local.iCnt),v.Local.sHold,"Sum","$ ","","n")
+	F.Intrinsic.Control.EndSelect		
+f.Intrinsic.Control.Next(v.Local.iCnt)
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)	
+F.Intrinsic.Control.EndTry
+Program.Sub.FormatBulk.End
+
+Program.Sub.gsETC_CellValueChanged.Start
+F.Intrinsic.Control.Try
+v.Local..BulkDeclareString(sError)
+v.Local.fHold.Declare(float)
+v.Local.fLabor.Declare
+v.Local.fMaterial.Declare
+v.Local.fOutside.Declare
+v.Local.sColumn.Declare
+f.Intrinsic.String.UCase(V.Args.Column,v.Local.sColumn)
+
+'if the user edited ETC_Hour and ETC_DollarPerHour, calculate the new labor field
+F.Intrinsic.Control.If(v.Local.sColumn,=,"ETC_HOUR")
+	'ETC_Hour * ETC_DollarPerHour = ETC_Labor
+	F.Intrinsic.Math.Mult(V.datatable.ETC(v.Args.rowindex).ETC_HOUR.fieldvalfloat,v.DataTable.ETC(v.Args.rowindex).ETC_DollarPerHour.fieldvalfloat,v.Local.fHold)
+	f.Data.DataTable.SetValue("ETC",v.Args.rowindex,"ETC_Labor",v.Local.fHold)
+F.Intrinsic.Control.Endif
+
+f.Intrinsic.Control.If(v.Local.sColumn,=,"ETC_DOLLARPERHOUR")
+	'ETC_Hour * ETC_DollarPerHour = ETC_Labor
+	F.Intrinsic.Math.Mult(V.datatable.ETC(v.Args.rowindex).ETC_HOUR.fieldvalfloat,v.DataTable.ETC(v.Args.rowindex).ETC_DollarPerHour.fieldvalfloat,v.Local.fHold)
+	f.Data.DataTable.SetValue("ETC",v.Args.rowindex,"ETC_Labor",v.Local.fHold)
+f.Intrinsic.Control.EndIf
+
+'Calculate  ETC_Value = ETC_Labor + ETC_Material + ETC_Outside
+f.Intrinsic.Math.Add(V.datatable.ETC(v.Args.rowindex).ETC_Labor.fieldvalfloat,V.datatable.ETC(v.Args.rowindex).ETC_MATERIAL.fieldvalfloat,V.Local.fHold)
+F.Intrinsic.Math.Add(v.Local.fHold,v.DataTable.ETC(v.Args.rowindex).ETC_Outside.fieldvalfloat,V.Local.fHold)
+f.Data.DataTable.SetValue("ETC",v.Args.rowindex,"ETC_Value",v.Local.fHold)
+
+v.Local.fLabor.Set(v.DataTable.ETC(v.Args.RowIndex).ETC_Labor!FieldValString)
+v.Local.fMaterial.Set(v.DataTable.ETC(v.Args.RowIndex).ETC_Material!FieldValString)
+v.Local.fOutside.Set(v.DataTable.ETC(v.Args.RowIndex).ETC_Outside!FieldValString)
+
+f.Intrinsic.Control.If(v.Local.fLabor,<>,0)
+	f.Intrinsic.Control.If(v.Local.fMaterial,<>,0)
+		f.Intrinsic.UI.Msgbox("This program is not designed to handle non-Zero Material and non-zero Labor at the same time. This will cause the unexpected result in the report for monthly ETC values. The calculation applied in the csv report is monthly ETC = Hours + Material + Outside.","Warning")
+		f.Data.DataTable.SetValue("ETC",v.Args.RowIndex,"ETC_Material",0)
+		f.Intrinsic.Math.Sub(V.datatable.ETC(v.Args.rowindex).ETC_Value.fieldvalfloat,v.Local.fMaterial,V.Local.fHold)
+		f.Data.DataTable.SetValue("ETC",v.Args.RowIndex,"ETC_Value",v.Local.fHold)
+	f.Intrinsic.Control.EndIf
+f.Intrinsic.Control.EndIf
+
+f.Intrinsic.Control.If(v.Local.fLabor,<>,0)
+	f.Intrinsic.Control.If(v.Local.fOutside,<>,0)
+		f.Intrinsic.UI.Msgbox("This program is not designed to handle non-Zero Outside and non-zero Labor at the same time. This will cause the unexpected result in the report for Monthly ETC values. The calculation applied in the csv report is Monthly ETC = Hours + Material + Outside.","Warning")
+		f.Data.DataTable.SetValue("ETC",v.Args.RowIndex,"ETC_Outside",0)
+		f.Intrinsic.Math.Sub(V.datatable.ETC(v.Args.rowindex).ETC_Value.fieldvalfloat,v.Local.fOutside,V.Local.fHold)
+		f.Data.DataTable.SetValue("ETC",v.Args.RowIndex,"ETC_Value",v.Local.fHold)
+	f.Intrinsic.Control.EndIf
+f.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)	
+F.Intrinsic.Control.EndTry
+Program.Sub.gsETC_CellValueChanged.End
+
+Program.Sub.cmdsave_click.Start
+'Save the Comments to GCG_3855_PROJ_PHS and the gsETC to GCG_3855_ETC
+F.Intrinsic.Control.Try
+v.Local..BulkDeclareString(sError,sSql,sProdComments,sEngComments,sRet)
+v.Local.iCnt.Declare
+
+'Check the Project number and Phase
+f.Intrinsic.Control.If(v.Screen.Form!txtproject.Text.Trim,=,"",or,v.Screen.Form!txtphase.Text.Trim,=,"")
+	f.Intrinsic.UI.Msgbox("Project number and Phase must be entered")
+	f.Intrinsic.Control.ExitSub
+f.Intrinsic.Control.EndIf
+
+f.Intrinsic.ui.InvokeWaitDialog("Saving...")
+
+'Save the Comments to GCG_3855_PROJ_PHS
+f.Intrinsic.String.Replace(v.Screen.Form!mltxtProd.Text.Trim,"'","",v.Local.sProdComments)
+f.Intrinsic.String.Replace(v.Screen.Form!mltxtEng.Text.Trim,"'","",v.Local.sEngComments)
+f.Intrinsic.String.Build("Select * from GCG_3855_PROJ_PHS where ltrim(rtrim(Project)) = '{0}' and ltrim(rtrim(Phase)) = '{1}'",v.Screen.Form!txtproject.Text.Trim,v.Screen.Form!txtphase.Text.Trim,v.Local.sSQL)
+f.ODBC.Connection!conx.ExecuteAndReturn(v.Local.sSQL,v.Local.sRet)
+f.Intrinsic.Control.If(v.Local.sRet.Trim,=,"")
+	f.Intrinsic.String.Build("Insert into GCG_3855_PROJ_PHS values ('{0}','{1}','{2}','{3}')",v.Screen.Form!txtproject.Text.Trim,v.Screen.Form!txtphase.Text.Trim,v.Local.sProdComments.Trim,v.Local.sEngComments.Trim,v.Local.sSQL)
+f.Intrinsic.Control.Else
+	f.Intrinsic.String.Build("Update GCG_3855_PROJ_PHS set Prod_Comments = '{0}', Eng_Comments = '{1}' where ltrim(rtrim(Project)) = '{2}' and ltrim(rtrim(Phase)) = '{3}'",v.Local.sProdComments.Trim,v.Local.sEngComments.Trim,v.Screen.Form!txtproject.Text.Trim,v.Screen.Form!txtphase.Text.Trim,v.Local.sSQL)
+f.Intrinsic.Control.EndIf
+f.ODBC.Connection!conx.Execute(v.Local.sSQL)
+
+'Save gsETC to GCG_3855_ETC
+f.Intrinsic.Control.If(v.DataTable.ETC.Exists,=,False)
+	f.Intrinsic.UI.CloseWaitDialog
+	f.Intrinsic.Control.ExitSub
+f.Intrinsic.Control.EndIf
+
+f.Intrinsic.Control.If(V.DataView.ETC!ETC_DV.Exists,=,true)
+	Function.Data.DataView.Close("ETC", "ETC_DV")
+f.Intrinsic.Control.endif
+Function.Data.DataView.Create("ETC","ETC_DV",22,"","")
+'IsNull(ETC_Hour,0) <> 0 or IsNull(ETC_Labor,0) <> 0 or IsNull(ETC_Material,0) <> 0 or IsNull(ETC_Outside,0) <> 0
+
+'Close then create ETC2
+f.Intrinsic.Control.If(v.DataTable.ETC2.Exists,=,true)	
+	Function.Data.DataTable.Close("ETC2")
+f.Intrinsic.Control.endif
+Function.Data.DataView.ToDataTable("ETC","ETC_DV", "ETC2", true)
+
+v.local.fETC_Hour.Declare
+v.Local.fETC_DollarPerHour.Declare
+v.Local.fETC_Labor.Declare
+v.Local.fETC_Material.Declare
+v.Local.fETC_Outside.Declare
+v.Local.fETC_Value.Declare
+v.Local.sFDoMDate.Declare
+v.Local.dFDoMDate.Declare
+
+
+f.Intrinsic.Control.For(v.Local.iCnt,0,v.DataTable.ETC2.RowCount--,1)
+	v.local.fETC_Hour.set(v.DataTable.ETC2(v.Local.iCnt).ETC_Hour!FieldValString)
+	v.Local.fETC_DollarPerHour.set(v.DataTable.ETC2(v.Local.iCnt).ETC_DollarPerHour!FieldValString)
+	v.Local.fETC_Labor.set(v.DataTable.ETC2(v.Local.iCnt).ETC_Labor!FieldValString)
+	v.Local.fETC_Material.set(v.DataTable.ETC2(v.Local.iCnt).ETC_Material!FieldValString)
+	v.Local.fETC_Outside.set(v.DataTable.ETC2(v.Local.iCnt).ETC_Outside!FieldValString)
+	v.Local.fETC_Value.set(v.DataTable.ETC2(v.Local.iCnt).ETC_Value!FieldValString)
+'	Function.Intrinsic.Debug.InvokeDebugger
+'	Function.Intrinsic.Debug.Stop
+	
+	f.Intrinsic.Date.DateSerial(v.DataTable.ETC2(v.Local.iCnt).ETC_Year!FieldValString,v.DataTable.ETC2(v.Local.iCnt).ETC_Month!FieldValString,1,v.Local.dFDoMDate)
+	f.Intrinsic.String.Build("Select * from GCG_3855_ETC where Project = '{0}' and Phase = '{1}' and ETC_Group = '{2}' and ETC_Year = {3} and ETC_Month = {4}",v.DataTable.ETC2(v.Local.iCnt).Project!FieldValTrim,v.DataTable.ETC2(v.Local.iCnt).Phase!FieldValTrim,v.DataTable.ETC2(v.Local.iCnt).ETC_Group!FieldValTrim,v.DataTable.ETC2(v.Local.iCnt).ETC_Year!FieldValString,v.DataTable.ETC2(v.Local.iCnt).ETC_Month!FieldValString,v.Local.sSQL)	
+	f.ODBC.Connection!conx.ExecuteAndReturn(v.Local.sSQL,v.Local.sRet)
+	'Select if there is record, update, otherwise, insert
+	f.Intrinsic.Control.If(v.Local.sRet,<>,"")
+		f.Intrinsic.String.Build("Update GCG_3855_ETC set ETC_Hour = {0}, ETC_DollarPerHour = {1}, ETC_Labor = {2}, ETC_Material = {3}, ETC_Outside = {4}, ETC_Value = {5}, Year_Month = '{6}',FDoMDate2 = {12},FDoMDate =  '{13}'  where ltrim(rtrim(Project)) = '{7}' and ltrim(rtrim(Phase)) = '{8}' and ltrim(rtrim(ETC_Group)) = '{9}' and ETC_Year = {10} and ETC_Month = {11}",v.Local.fETC_Hour,v.Local.fETC_DollarPerHour,v.Local.fETC_Labor,v.Local.fETC_Material,v.Local.fETC_Outside,v.Local.fETC_Value,v.DataTable.ETC2(v.Local.iCnt).Year_Month!FieldValString,v.DataTable.ETC2(v.Local.iCnt).Project!FieldValTrim,v.DataTable.ETC2(v.Local.iCnt).Phase!FieldValTrim,v.DataTable.ETC2(v.Local.iCnt).ETC_Group!FieldValTrim,v.DataTable.ETC2(v.Local.iCnt).ETC_Year!FieldValString,v.DataTable.ETC2(v.Local.iCnt).ETC_Month!FieldValString,v.Local.dFDoMDate.FormatYYYYMMDD,v.Local.dFDoMDate.PervasiveDate,v.Local.sSQL)
+	f.Intrinsic.Control.Else
+		f.Intrinsic.String.Build("Insert into GCG_3855_ETC (ETC_Hour,ETC_DollarPerHour,ETC_Labor,ETC_Material,ETC_Outside,ETC_Value,Year_Month,Project,Phase,ETC_Group,ETC_Year,ETC_Month,FDoMDate2,FDoMDate) values ({0},{1},{2},{3},{4},{5},'{6}','{7}','{8}','{9}',{10},{11},'{12}','{13}')",v.Local.fETC_Hour,v.Local.fETC_DollarPerHour,v.Local.fETC_Labor,v.Local.fETC_Material,v.Local.fETC_Outside,v.Local.fETC_Value,v.DataTable.ETC2(v.Local.iCnt).Year_Month!FieldValString,v.DataTable.ETC2(v.Local.iCnt).Project!FieldValTrim,v.DataTable.ETC2(v.Local.iCnt).Phase!FieldValTrim,v.DataTable.ETC2(v.Local.iCnt).ETC_Group!FieldValTrim,v.DataTable.ETC2(v.Local.iCnt).ETC_Year!FieldValString,v.DataTable.ETC2(v.Local.iCnt).ETC_Month!FieldValString,v.Local.dFDoMDate.FormatYYYYMMDD,v.Local.dFDoMDate.PervasiveDate,v.Local.sSQL)	
+	f.Intrinsic.Control.EndIf
+	f.ODBC.Connection!conx.Execute(v.Local.sSQL)
+f.Intrinsic.Control.Next(v.Local.iCnt)
+
+'Save: use this will cause error, so I use the update/insert
+'f.Data.DataTable.SaveToDB("ETC2","conx","GCG_3855_ETC","PROJECT*!*PHASE*!*ETC_GROUP*!*ETC_YEAR*!*ETC_MONTH",256,"ETC_Group@!@ETC_Group*!*ETC_Month@!@ETC_Month*!*ETC_Year@!@ETC_Year*!*ETC_Value@!@ETC_Value*!*ETC_Hour@!@ETC_Hour*!*ETC_Labor@!@ETC_Labor*!*ETC_DollarPerHour@!@ETC_DollarPerHour*!*ETC_Material@!@ETC_Material*!*ETC_Outside@!@ETC_Outside*!*PROJECT@!@PROJECT*!*PHASE@!@PHASE*!*Year_Month@!@Year_Month")
+
+f.Intrinsic.UI.CloseWaitDialog
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)	
+F.Intrinsic.Control.EndTry
+Program.Sub.cmdsave_click.End
+
+Program.Sub.cmdclear_click.Start
+'Clear all the textboxes and close all data tables
+F.Intrinsic.Control.Try
+V.Local.sError.Declare
+
+'Clear all texboxes
+gui.Form.txtproject.Text("")
+gui.Form.txtphase.Text("")
+gui.Form.ddlMonth.Text("")
+gui.Form.ddlYear.Text("")
+gui.Form.txtEstMonths.Text("")
+gui.Form.txtGroup.Text("")
+gui.Form.lblUSDPerHour.Caption("")
+gui.Form.mltxtEng.Text("")
+gui.Form.mltxtProd.Text("")
+
+'Close all data tables
+F.Intrinsic.Control.If(V.DataTable.ETC.Exists,=,True)
+	gui.Form.gsETC.ClearRows("ETC_GV")	
+	F.Data.DataTable.Close("ETC")
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.If(V.DataTable.Group.Exists,=,True)
+	gui.Form.gsGroup.ClearRows("GROUP_GV")
+	F.Data.DataTable.Close("GROUP")
+F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)	
+F.Intrinsic.Control.EndTry
+Program.Sub.cmdclear_click.End
+
+Program.Sub.cmdUSDPerHour_Click.Start
+'User put a value in the textbox lblUSDPerHour, then all the DollarPerHour cells from the grid gsETC will be set to this value, then program recalculate the total of the grid
+F.Intrinsic.Control.Try
+v.Local.sError.Declare
+v.Local.fHold.Declare
+v.Local.iCnt.Declare
+
+f.Intrinsic.Control.If(v.DataTable.ETC.Exists,=,False)
+	f.Intrinsic.Control.ExitSub
+f.Intrinsic.Control.EndIf
+
+f.Data.DataTable.SetValue("ETC",-1,"ETC_DollarPerHour",v.Screen.Form!lblUSDPerHour.Caption.Trim)
+
+f.Intrinsic.Control.For(v.Local.iCnt,0,v.DataTable.ETC.RowCount--,1)
+	'ETC_Hour * ETC_DollarPerHour = ETC_Labor
+	F.Intrinsic.Math.Mult(V.datatable.ETC(v.Local.iCnt).ETC_HOUR.fieldvalfloat,v.DataTable.ETC(v.Local.iCnt).ETC_DollarPerHour.fieldvalfloat,v.Local.fHold)
+	f.Data.DataTable.SetValue("ETC",v.Local.iCnt,"ETC_Labor",v.Local.fHold)
+	'ETC_Labor + ETC_Material + ETC_Outside = ETC_Value
+	f.Intrinsic.Math.Add(v.Local.fHold,V.datatable.ETC(v.Local.iCnt).ETC_MATERIAL.fieldvalfloat,V.Local.fHold)
+	F.Intrinsic.Math.Add(v.Local.fHold,v.DataTable.ETC(v.Local.iCnt).ETC_Outside.fieldvalfloat,V.Local.fHold)
+	f.Data.DataTable.SetValue("ETC",v.Local.iCnt,"ETC_Value",v.Local.fHold)
+f.Intrinsic.Control.Next(v.Local.iCnt)
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)	
+F.Intrinsic.Control.EndTry
+Program.Sub.cmdUSDPerHour_Click.End
+
+Program.Sub.Form_unload.Start
+F.Intrinsic.Control.Try
+V.Local.sError.Declare
+
+F.ODBC.Connection!conx.Close
+F.Intrinsic.Control.End
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)	
+F.Intrinsic.Control.EndTry
+Program.Sub.Form_unload.End
+
+Program.Sub.Comments.Start
+${$0$}$$}$BAO$}$3/21/2018 8:59:51 AM$}$False
+${$3$}$0$}$$}$0$}$-1$}$$}$12:00:00 AM$}$
+'BN, Feb 20, 2018
+This program will input estimated values of Labor,Material,Outside for months for a particular Group of a Phase of a Project.
+1/The script GCG_3855_PROJ_PHS.g2u will receive the inputs:
+-User will select Project and Phase, the gsGroup will be populated.
+-Now user will select the start month they want to do the estimates. Then user will enter the number of months they want to estimate.
+For example: if start month is Jan 2018 and number of months is 3, the months to be input are: 2018/01, 2018/02, 2018/03
+-User will select the Group to input, then click ETC in-line button, the gsETC for that Group will be populated. If there are already data for a particular month in the database GCG_3855_ETC, it will be pulled in.
+-Save button will save data to GCG_3855_ETC having the estimates of Labor <> 0 or Material <> 0 or Outside <> 0
+-Comments for each Phase will be saved to GCG_3855_PROJ_PHS.
+2/The script GCG_3855_Excel will export the values to a csv file.
+-User will select the project to export: can be 1, multiple, or all projects.
+-Click OK to export to csv file as a report.
+-The program will look up the data from PROJECT_CURR_BUDG and only data from GCG_3855_ETC having Year_Month later that the current month.
+Program.Sub.Comments.End
