@@ -1,0 +1,193 @@
+Program.Sub.ScreenSU.Start
+Gui.Form..Create
+Gui.Form..Caption("Progress of Capturing Data - Project 3855")
+Gui.Form..Size(11655,1620)
+Gui.Form..MinX(0)
+Gui.Form..MinY(0)
+Gui.Form..Position(0,0)
+Gui.Form..BackColor(-2147483633)
+Gui.Form..MousePointer(0)
+Gui.Form..Event(UnLoad,Form_UnLoad)
+Gui.Form.proBar.Create(ProgressBar)
+Gui.Form.proBar.Size(10905,255)
+Gui.Form.proBar.Position(210,345)
+Program.Sub.ScreenSU.End
+Program.Sub.Preflight.Start
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+'BN, Feb 2019
+f.Intrinsic.Control.Try
+	v.Local.sError.Declare
+	v.Local.sRet.Declare
+	v.Local.sSQL.Declare
+	v.Local.sHold.Declare
+
+	v.Local.smMonth.Declare
+	v.Local.sYYYY.Declare
+	v.Local.sMM.Declare
+	v.Local.sDD.Declare
+	v.Local.sHH.Declare
+	v.Local.sNN.Declare
+	v.Local.sSS.Declare
+	
+	v.Local.iHold.Declare	
+	v.Local.iCnt.Declare
+	v.Local.iThisMonth.Declare
+	v.Local.iCurrentYear.Declare
+	v.Local.iCurrentMonth.Declare
+	v.Local.iCurrentDate.Declare	
+	v.Local.iNextMonthDate.Declare
+	v.Local.iNextMonthYear.Declare	
+	v.Local.iNextMonthMonth.Declare		
+	v.Local.iDateTime.Declare
+	
+	v.Local.dDateHold.Declare
+	v.Local.dDateTimeProcess.Declare
+	v.Local.dCurrentDate.Declare	
+	v.Local.dNextDay.Declare	
+	v.Local.dNextMonthDate.Declare	
+	v.Local.dFDoMDate.Declare
+	
+	v.local.fETC_Hour.Declare
+	v.Local.fETC_DollarPerHour.Declare
+	v.Local.fETC_Labor.Declare
+	v.Local.fETC_Material.Declare
+	v.Local.fETC_Outside.Declare
+	v.Local.fETC_Value.Declare
+	v.Local.sFDoMDate.Declare	
+	
+	'Check if it is last day of the month
+	f.Intrinsic.Date.DateAdd("D",1,v.Ambient.Date,v.Local.dNextDay)
+	f.Intrinsic.Date.Month(v.Local.dNextDay,v.Local.iHold)
+	f.Intrinsic.Date.Month(v.Ambient.Date,v.Local.iThisMonth)
+	f.Intrinsic.Control.If(v.Local.iThisMonth,=,v.Local.iHold)
+		'f.Intrinsic.UI.Msgbox("Today is not the end of the current month. This program is only run at month end.","End")
+'		f.Intrinsic.Control.CallSub("Unload")
+	f.Intrinsic.Control.EndIf	
+	
+	f.ODBC.Connection!conx.OpenCompanyConnection(600)	
+
+	v.Local.dDateTimeProcess.Set(v.Ambient.now)
+
+	'For testing purpose, switch dates
+	'f.Intrinsic.Date.DateTimeSerial(2019,3,31,23,59,59, v.Local.dDateTimeProcess)
+
+	'Format date time
+	f.Intrinsic.String.Left(v.Local.dDateTimeProcess.FormatYYYYMMDDHhNnSs,4,v.Local.sYYYY)
+	f.Intrinsic.String.Mid(v.Local.dDateTimeProcess.FormatYYYYMMDDHhNnSs,5,2,v.Local.sMM)
+	f.Intrinsic.String.Mid(v.Local.dDateTimeProcess.FormatYYYYMMDDHhNnSs,7,2,v.Local.sDD)
+	f.Intrinsic.String.Mid(v.Local.dDateTimeProcess.FormatYYYYMMDDHhNnSs,9,2,v.Local.sHH)
+	f.Intrinsic.String.Mid(v.Local.dDateTimeProcess.FormatYYYYMMDDHhNnSs,11,2,v.Local.sNN)
+	f.Intrinsic.String.Right(v.Local.dDateTimeProcess.FormatYYYYMMDDHhNnSs,2,v.Local.sSS)	
+	v.Local.iDateTime.Set(v.Local.dDateTimeProcess.FormatYYYYMMDD)
+	'Current
+	F.Intrinsic.Date.Month(V.local.dDateTimeProcess,V.Local.iCurrentMonth)
+	F.Intrinsic.Date.Year(V.local.dDateTimeProcess,V.Local.iCurrentYear)
+	F.Intrinsic.Date.DateSerial(v.Local.iCurrentYear,v.Local.iCurrentMonth,1,v.Local.dCurrentDate)
+	f.Intrinsic.String.Format(v.Local.dCurrentDate,"YYYYMMDD",v.Local.iCurrentDate)
+	'Next month
+	f.Intrinsic.Date.DateAdd("M",1,v.Local.dCurrentDate,v.Local.dNextMonthDate)	
+	f.Intrinsic.String.Format(v.Local.dNextMonthDate,"YYYYMMDD",v.Local.iNextMonthDate)
+	f.Intrinsic.Date.Year(v.Local.dNextMonthDate,v.Local.iNextMonthYear)
+	f.Intrinsic.Date.Month(v.Local.dNextMonthDate,v.Local.iNextMonthMonth)	
+	
+	'1/Getting Projects Actual Values
+	f.Data.DataTable.CreateFromSQL("dtProject","conx","Select PROJECT,Phase,F_GROUP as ETC_Group,STD_Labor_rate,CUR_HOURS,CUR_LABR,CUR_MATL,CUR_OUTS,CUR_SALES,ACT_HOURS,ACT_MATL,ACT_LABR,ACT_OUTS from V_PROJECT_CURR_BUDG  order by Project, Phase, ETC_Group",True)
+	f.Data.DataTable.AddColumn("dtProject","FDoMDate","Date","1900-01-01")
+	f.Data.DataTable.SetValue("dtProject",-1,"FDoMDate",v.Local.dCurrentDate)
+	f.Data.DataTable.AddColumn("dtProject","FDoMDate2","Long","19000101")
+	f.Data.DataTable.SetValue("dtProject",-1,"FDoMDate2",v.Local.iCurrentDate)
+	f.Data.DataTable.AddColumn("dtProject","ETC_Year","Long",v.Local.iCurrentYear)
+	f.Data.DataTable.AddColumn("dtProject","ETC_Month","Long",v.Local.iCurrentMonth)
+	f.Intrinsic.String.LPad(v.Local.iCurrentMonth,"0",2,v.Local.sHold)
+	f.Intrinsic.String.Build("m{0}_{1}",v.Local.iCurrentYear,v.Local.sHold,v.Local.smMonth)	
+	
+	f.Intrinsic.Control.If(v.DataTable.dtProject.RowCount,>,0)
+		gui.Form..Show
+		gui.Form..Caption("Getting Projects Actual values...")
+		gui.Form.proBar.Max(v.DataTable.dtProject.RowCount)
+	f.Intrinsic.Control.EndIf
+
+	f.Intrinsic.Control.For(v.Local.iCnt,0,v.DataTable.dtProject.RowCount--,1)
+		gui.Form.proBar.Value(v.Local.iCnt)	
+		'Select if there is record, update, otherwise, insert
+		f.Intrinsic.String.Build("Select * from GCG_3855_EtcAct where Project = '{0}' and Phase = '{1}' and ETC_Group = '{2}' and FDoMDate2 = {3}",v.DataTable.dtProject(v.Local.iCnt).Project!FieldValTrim,v.DataTable.dtProject(v.Local.iCnt).Phase!FieldValTrim,v.DataTable.dtProject(v.Local.iCnt).ETC_Group!FieldValTrim,v.DataTable.dtProject(v.Local.iCnt).FDoMDate2!FieldValString,v.Local.sSQL)
+		f.ODBC.Connection!conx.ExecuteAndReturn(v.Local.sSQL,v.Local.sRet)		
+		f.Intrinsic.Control.If(v.Local.sRet,<>,"")
+			f.Intrinsic.String.Build("Update GCG_3855_EtcAct set Year_Month = '{4}',STD_Labor_rate = {5},CUR_HOURS = {6},CUR_LABR = {7},CUR_MATL = {8},CUR_OUTS = {9},CUR_SALES = {10},ACT_HOURS = {11},ACT_MATL = {12},ACT_LABR = {13},ACT_OUTS = {14}, ActAutoPopTime = DateTimeFromParts({15},{16},{17},{18},{19},{20},0), ActAutoPopDate = {21}  where Project = '{0}' and Phase = '{1}' and ETC_Group = '{2}' and FDoMDate2 = {3}",v.DataTable.dtProject(v.Local.iCnt).Project!FieldValTrim,v.DataTable.dtProject(v.Local.iCnt).Phase!FieldValTrim,v.DataTable.dtProject(v.Local.iCnt).ETC_Group!FieldValTrim,v.DataTable.dtProject(v.Local.iCnt).FDoMDate2!FieldValString,v.Local.smMonth,v.DataTable.dtProject(v.Local.iCnt).STD_Labor_rate!FieldValString,v.DataTable.dtProject(v.Local.iCnt).CUR_HOURS!FieldValString,v.DataTable.dtProject(v.Local.iCnt).CUR_LABR!FieldValString,v.DataTable.dtProject(v.Local.iCnt).CUR_MATL!FieldValString,v.DataTable.dtProject(v.Local.iCnt).CUR_OUTS!FieldValString,v.DataTable.dtProject(v.Local.iCnt).CUR_SALES!FieldValString,v.DataTable.dtProject(v.Local.iCnt).ACT_HOURS!FieldValString,v.DataTable.dtProject(v.Local.iCnt).ACT_MATL!FieldValString,v.DataTable.dtProject(v.Local.iCnt).ACT_LABR!FieldValString,v.DataTable.dtProject(v.Local.iCnt).ACT_OUTS!FieldValString,v.Local.sYYYY,v.Local.sMM,v.Local.sDD,v.Local.sHH,v.Local.sNN,v.Local.sSS,v.Local.iDateTime,v.Local.sSQL)
+		f.Intrinsic.Control.Else
+			v.Local.dDateHold.Set(v.DataTable.dtProject(v.Local.iCnt).FDoMDate!FieldValString)
+			f.Intrinsic.String.Build("Insert into GCG_3855_EtcAct (Project,Phase,ETC_Group,ETC_Year,ETC_Month,Year_Month,FDoMDate,FDoMDate2,STD_Labor_rate,CUR_HOURS,CUR_LABR,CUR_MATL,CUR_OUTS,CUR_SALES,ACT_HOURS,ACT_MATL,ACT_LABR,ACT_OUTS,ActAutoPopTime,ActAutoPopDate) values ('{0}','{1}','{2}',{3},{4},'{5}','{6}',{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},DateTimeFromParts({18},{19},{20},{21},{22},{23},0),{24})",v.DataTable.dtProject(v.Local.iCnt).Project!FieldValTrim,v.DataTable.dtProject(v.Local.iCnt).Phase!FieldValTrim,v.DataTable.dtProject(v.Local.iCnt).ETC_Group!FieldValTrim,v.DataTable.dtProject(v.Local.iCnt).ETC_Year!FieldValString,v.DataTable.dtProject(v.Local.iCnt).ETC_Month!FieldValString,v.Local.smMonth,v.Local.dDateHold.PervasiveDate,v.DataTable.dtProject(v.Local.iCnt).FDoMDate2!FieldValString,v.DataTable.dtProject(v.Local.iCnt).STD_Labor_rate!FieldValString,v.DataTable.dtProject(v.Local.iCnt).CUR_HOURS!FieldValString,v.DataTable.dtProject(v.Local.iCnt).CUR_LABR!FieldValString,v.DataTable.dtProject(v.Local.iCnt).CUR_MATL!FieldValString,v.DataTable.dtProject(v.Local.iCnt).CUR_OUTS!FieldValString,v.DataTable.dtProject(v.Local.iCnt).CUR_SALES!FieldValString,v.DataTable.dtProject(v.Local.iCnt).ACT_HOURS!FieldValString,v.DataTable.dtProject(v.Local.iCnt).ACT_MATL!FieldValString,v.DataTable.dtProject(v.Local.iCnt).ACT_LABR!FieldValString,v.DataTable.dtProject(v.Local.iCnt).ACT_OUTS!FieldValString,v.Local.sYYYY,v.Local.sMM,v.Local.sDD,v.Local.sHH,v.Local.sNN,v.Local.sSS,v.Local.iDateTime,v.Local.sSQL)	
+		f.Intrinsic.Control.EndIf
+		f.ODBC.Connection!conx.Execute(v.Local.sSQL)
+		
+	f.Intrinsic.Control.Next(v.Local.iCnt)
+	gui.Form..Visible(False)
+	
+	'2/Getting Project Estimates values of the next month
+	'and IsNull(ETCFinalizeDate,0) > 0 to avoid overwritting the already finalized
+	f.Intrinsic.String.Build("Select PROJECT,PHASE,ETC_Group,ETC_Year,ETC_Month,ETC_Hour,ETC_DollarPerHour,ETC_Labor,ETC_Material,ETC_Outside,ETC_Revenue,ETC_Value,Year_Month,FDoMDate,FDoMDate2,Now() as ETCAutoPopDate  from GCG_3855_ETC where FDoMDate2 >= {0} and IsNull(ETCFinalizeDate,0) = 0 order by Project,Phase,ETC_Group",v.Local.iNextMonthDate,v.Local.sSQL)
+	f.Data.DataTable.CreateFromSQL("dtEst","conx",v.Local.sSQL,True)
+	f.Intrinsic.Control.If(v.DataTable.dtEst.RowCount,>,0)
+		gui.Form..Show
+		gui.Form..Caption("Getting Projects Estimate values...")
+		gui.Form.proBar.Max(v.DataTable.dtEst.RowCount)
+	f.Intrinsic.Control.EndIf
+	f.Intrinsic.String.LPad(v.Local.iNextMonthMonth,"0",2,v.Local.sHold)
+	f.Intrinsic.String.Build("m{0}_{1}",v.Local.iNextMonthYear,v.Local.sHold,v.Local.smMonth)	
+	
+	f.Intrinsic.Control.For(v.Local.iCnt,0,v.DataTable.dtEst.RowCount--,1)	
+		gui.Form.proBar.Value(v.Local.iCnt)		
+		
+		v.local.fETC_Hour.set(v.DataTable.dtEst(v.Local.iCnt).ETC_Hour!FieldValString)
+		v.Local.fETC_DollarPerHour.set(v.DataTable.dtEst(v.Local.iCnt).ETC_DollarPerHour!FieldValString)
+		v.Local.fETC_Labor.set(v.DataTable.dtEst(v.Local.iCnt).ETC_Labor!FieldValString)
+		v.Local.fETC_Material.set(v.DataTable.dtEst(v.Local.iCnt).ETC_Material!FieldValString)
+		v.Local.fETC_Outside.set(v.DataTable.dtEst(v.Local.iCnt).ETC_Outside!FieldValString)
+		v.Local.fETC_Value.set(v.DataTable.dtEst(v.Local.iCnt).ETC_Value!FieldValString)	
+		
+		f.Intrinsic.Date.DateSerial(v.DataTable.dtEst(v.Local.iCnt).ETC_Year!FieldValString,v.DataTable.dtEst(v.Local.iCnt).ETC_Month!FieldValString,1,v.Local.dFDoMDate)
+		
+		f.Intrinsic.String.Build("Select * from GCG_3855_EtcAct where Project = '{0}' and Phase = '{1}' and ETC_Group = '{2}' and ETC_Year = {3} and ETC_Month = {4}",v.DataTable.dtEst(v.Local.iCnt).Project!FieldValTrim,v.DataTable.dtEst(v.Local.iCnt).Phase!FieldValTrim,v.DataTable.dtEst(v.Local.iCnt).ETC_Group!FieldValTrim,v.DataTable.dtEst(v.Local.iCnt).ETC_Year!FieldValString,v.DataTable.dtEst(v.Local.iCnt).ETC_Month!FieldValString,v.Local.sSQL)	
+		f.ODBC.Connection!conx.ExecuteAndReturn(v.Local.sSQL,v.Local.sRet)
+		'Select if there is record, update, otherwise, update
+		f.Intrinsic.Control.If(v.Local.sRet,<>,"")		
+			f.Intrinsic.String.Build("Update GCG_3855_EtcAct set ETC_Hour = {0}, ETC_DollarPerHour = {1}, ETC_Labor = {2}, ETC_Material = {3}, ETC_Outside = {4}, ETC_Value = {5}, Year_Month = '{6}',ETCAutoPopTime = DateTimeFromParts({12},{13},{14},{15},{16},{17},0), ETCAutoPopDate = {18} where Project = '{7}' and Phase = '{8}' and ETC_Group = '{9}' and ETC_Year = {10} and ETC_Month = {11}",v.Local.fETC_Hour,v.Local.fETC_DollarPerHour,v.Local.fETC_Labor,v.Local.fETC_Material,v.Local.fETC_Outside,v.Local.fETC_Value,v.DataTable.dtEst(v.Local.iCnt).Year_Month!FieldValString,v.DataTable.dtEst(v.Local.iCnt).Project!FieldValTrim,v.DataTable.dtEst(v.Local.iCnt).Phase!FieldValTrim,v.DataTable.dtEst(v.Local.iCnt).ETC_Group!FieldValTrim,v.DataTable.dtEst(v.Local.iCnt).ETC_Year!FieldValString,v.DataTable.dtEst(v.Local.iCnt).ETC_Month!FieldValString,v.Local.sYYYY,v.Local.sMM,v.Local.sDD,v.Local.sHH,v.Local.sNN,v.Local.sSS,v.Local.iDateTime,v.Local.sSQL)
+		f.Intrinsic.Control.Else		
+			f.Intrinsic.String.Build("Insert into GCG_3855_EtcAct (ETC_Hour,ETC_DollarPerHour,ETC_Labor,ETC_Material,ETC_Outside,ETC_Value,Year_Month,Project,Phase,ETC_Group,ETC_Year,ETC_Month,FDoMDate,FDoMDate2,ETCAutoPopTime,ETCAutoPopDate) values ({0},{1},{2},{3},{4},{5},'{6}','{7}','{8}','{9}',{10},{11},'{12}',{13},DateTimeFromParts({14},{15},{16},{17},{18},{19},0),{20})",v.Local.fETC_Hour,v.Local.fETC_DollarPerHour,v.Local.fETC_Labor,v.Local.fETC_Material,v.Local.fETC_Outside,v.Local.fETC_Value,v.Local.smMonth,v.DataTable.dtEst(v.Local.iCnt).Project!FieldValTrim,v.DataTable.dtEst(v.Local.iCnt).Phase!FieldValTrim,v.DataTable.dtEst(v.Local.iCnt).ETC_Group!FieldValTrim,v.DataTable.dtEst(v.Local.iCnt).ETC_Year!FieldValString,v.DataTable.dtEst(v.Local.iCnt).ETC_Month!FieldValString,v.Local.dFDoMDate.PervasiveDate,v.Local.dFDoMDate.FormatYYYYMMDD,v.Local.sYYYY,v.Local.sMM,v.Local.sDD,v.Local.sHH,v.Local.sNN,v.Local.sSS,v.Local.iDateTime,v.Local.sSQL)	
+		f.Intrinsic.Control.EndIf
+		f.ODBC.Connection!conx.Execute(v.Local.sSQL)
+		
+	f.Intrinsic.Control.Next(v.Local.iCnt)
+	
+	f.Intrinsic.Control.CallSub("Unload")	
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.String.Build("Project: {0}{1}Subroutine: {2}{1}Subroutine called from:{6}{1}Error Occurred: {3}{1}Description: {4}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,v.Ambient.SubroutineCalledFrom,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	f.Intrinsic.Control.CallSub("Unload")
+F.Intrinsic.Control.EndTry
+Program.Sub.Main.End
+
+Program.Sub.UnLoad.Start
+f.Intrinsic.Control.Try
+	v.Local.sError.Declare
+
+	F.Intrinsic.Control.If(V.ODBC.conx.State,=,1)
+		F.ODBC.Connection!conx.close
+	F.Intrinsic.Control.EndIf
+	
+	f.Intrinsic.Control.End
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.String.Build("Project: {0}{1}Subroutine: {2}{1}Subroutine called from:{6}{1}Error Occurred: {3}{1}Description: {4}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,v.Ambient.SubroutineCalledFrom,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End	
+F.Intrinsic.Control.EndTry
+Program.Sub.UnLoad.End
+Program.Sub.Form_UnLoad.Start
+gui.Form..Visible(False)
+Program.Sub.Form_UnLoad.End
+
+
