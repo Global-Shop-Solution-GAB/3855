@@ -1,0 +1,1411 @@
+Program.Sub.ScreenSU.Start
+Gui.Form..Create
+Gui.Form..Caption("Export Excel")
+Gui.Form..Size(8175,10140)
+Gui.Form..MinX(0)
+Gui.Form..MinY(0)
+Gui.Form..Position(0,0)
+Gui.Form..BackColor(-2147483633)
+Gui.Form..MousePointer(0)
+Gui.Form..Sizeable(False)
+Gui.Form..Event(UnLoad,Form_UnLoad)
+Gui.Form.cmdExport.Create(Button)
+Gui.Form.cmdExport.Size(855,375)
+Gui.Form.cmdExport.Position(180,9105)
+Gui.Form.cmdExport.Caption("OK")
+Gui.Form.cmdExport.Event(Click,cmdOK_Click)
+Gui.Form.cmdExport.TabStop(True)
+Gui.Form.cmdExport.TabIndex(6)
+Gui.Form.txtProject.Create(TextBox,"PMA1",True,840,300,0,195,360,True,0,"Arial",8,-2147483643,2)
+Gui.Form.txtProject.MaxLength(7)
+Gui.Form.txtProject.TabStop(True)
+Gui.Form.txtProject.TabIndex(1)
+Gui.Form.cmdProjectBrwse.Create(Button)
+Gui.Form.cmdProjectBrwse.Size(405,300)
+Gui.Form.cmdProjectBrwse.Position(1170,345)
+Gui.Form.cmdProjectBrwse.Caption("^")
+Gui.Form.cmdProjectBrwse.Event(Click,cmdProjectBrwse_Click)
+Gui.Form.cmdProjectBrwse.TabStop(True)
+Gui.Form.cmdProjectBrwse.TabIndex(2)
+Gui.Form.lblProject.Create(Label,"Project",True,1065,255,0,195,135,True,0,"Arial",8,-2147483633,0)
+Gui.Form.txtDescr.Create(TextBox,"",True,3000,300,0,195,1065,True,0,"Arial",8,-2147483643,2)
+Gui.Form.txtDescr.TabStop(True)
+Gui.Form.txtDescr.TabIndex(4)
+Gui.Form.txtDescr.MaxLength(30)
+Gui.Form.lblProject2.Create(Label,"Description",True,1380,255,0,195,840,True,0,"Arial",8,-2147483633,0)
+Gui.Form.gsProj.Create(GsGridControl)
+Gui.Form.gsProj.Size(7605,5415)
+Gui.Form.gsProj.Position(195,2100)
+Gui.Form.gsProj.TabStop(True)
+Gui.Form.gsProj.TabIndex(7)
+Gui.Form.gsProj.Event(RowCellClick,gsProj_RowCellClick)
+Gui.Form.chkAllProj.Create(CheckBox)
+Gui.Form.chkAllProj.Size(1560,360)
+Gui.Form.chkAllProj.Position(1785,315)
+Gui.Form.chkAllProj.TabStop(True)
+Gui.Form.chkAllProj.TabIndex(3)
+Gui.Form.chkAllProj.Caption("All Projects")
+Gui.Form.cmdAdd.Create(Button)
+Gui.Form.cmdAdd.Size(855,375)
+Gui.Form.cmdAdd.Position(180,1530)
+Gui.Form.cmdAdd.TabStop(True)
+Gui.Form.cmdAdd.TabIndex(5)
+Gui.Form.cmdAdd.Caption("Add")
+Gui.Form.cmdAdd.Event(Click,cmdAdd_Click)
+Gui.Form.frYearMonth.Create(Frame)
+Gui.Form.frYearMonth.Size(2715,1290)
+Gui.Form.frYearMonth.Position(195,7695)
+Gui.Form.frYearMonth.Caption("Report Month")
+Gui.Form.txtYear.Create(TextBox,"",True,555,300,0,345,585,True,1,"Arial",8,-2147483643,2)
+Gui.Form.txtYear.Parent("frYearMonth")
+Gui.Form.txtYear.MaxLength(4)
+Gui.Form.txtYear.NumericOnly(2)
+Gui.Form.txtMonth.Create(TextBox,"",True,360,300,0,1755,585,True,1,"Arial",8,-2147483643,2)
+Gui.Form.txtMonth.Parent("frYearMonth")
+Gui.Form.txtMonth.MaxLength(2)
+Gui.Form.txtMonth.NumericOnly(2)
+Gui.Form.lbl1.Create(Label,"Year",True,660,255,0,330,315,True,0,"Arial",8,-2147483633,0)
+Gui.Form.lbl1.Parent("frYearMonth")
+Gui.Form.lbl2.Create(Label,"Month",True,780,255,0,1455,315,True,0,"Arial",8,-2147483633,0)
+Gui.Form.lbl2.Parent("frYearMonth")
+Gui.Form.cmdIncreaseYear.Create(Button)
+Gui.Form.cmdIncreaseYear.Size(315,375)
+Gui.Form.cmdIncreaseYear.Position(975,270)
+Gui.Form.cmdIncreaseYear.Parent("frYearMonth")
+Gui.Form.cmdIncreaseYear.Caption("+")
+Gui.Form.cmdIncreaseYear.Event(Click,cmdIncreaseYear_Click)
+Gui.Form.cmdDecreaseYear.Create(Button)
+Gui.Form.cmdDecreaseYear.Size(315,375)
+Gui.Form.cmdDecreaseYear.Position(975,735)
+Gui.Form.cmdDecreaseYear.Parent("frYearMonth")
+Gui.Form.cmdDecreaseYear.Caption("-")
+Gui.Form.cmdDecreaseYear.Event(Click,cmdDecreaseYear_Click)
+Gui.Form.cmdIncreaseMonth.Create(Button)
+Gui.Form.cmdIncreaseMonth.Size(315,375)
+Gui.Form.cmdIncreaseMonth.Position(2220,270)
+Gui.Form.cmdIncreaseMonth.Parent("frYearMonth")
+Gui.Form.cmdIncreaseMonth.Caption("+")
+Gui.Form.cmdIncreaseMonth.Event(Click,cmdIncreaseMonth_Click)
+Gui.Form.cmdDecreaseMonth.Create(Button)
+Gui.Form.cmdDecreaseMonth.Size(315,375)
+Gui.Form.cmdDecreaseMonth.Position(2220,735)
+Gui.Form.cmdDecreaseMonth.Parent("frYearMonth")
+Gui.Form.cmdDecreaseMonth.Caption("-")
+Gui.Form.cmdDecreaseMonth.Event(Click,cmdDecreaseMonth_Click)
+Gui.Form.chkFinalize.Create(CheckBox)
+Gui.Form.chkFinalize.Size(1215,360)
+Gui.Form.chkFinalize.Position(3165,8205)
+Gui.Form.chkFinalize.Caption("Finalize")
+Gui.F_ProgressBar..Create
+Gui.F_ProgressBar..Caption("Generating csv file progress")
+Gui.F_ProgressBar..Size(20325,1170)
+Gui.F_ProgressBar..MinX(0)
+Gui.F_ProgressBar..MinY(0)
+Gui.F_ProgressBar..Position(0,0)
+Gui.F_ProgressBar..BackColor(-2147483633)
+Gui.F_ProgressBar..MousePointer(0)
+Gui.F_ProgressBar..Event(UnLoad,F_ProgressBar_UnLoad)
+Gui.F_ProgressBar.proBar.Create(ProgressBar)
+Gui.F_ProgressBar.proBar.Size(19605,135)
+Gui.F_ProgressBar.proBar.Position(255,180)
+Gui.F_ProgressBar.lblProjProcessing.Create(Label,"",True,450,255,0,270,420,True,1,"Arial",8,-2147483646,0)
+Gui.F_ProgressBar.lblAllProj.Create(Label,"",True,405,255,0,825,450,True,0,"Arial",8,-2147483646,0)
+Gui.F_ProgressBar.lbl1.Create(Label,"/",True,150,255,0,690,450,True,0,"Arial",8,-2147483633,0)
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+v.Global..BulkDeclareString(sStardardDashedLine,sTitle,sColumnsCompute,sColumnsCompute2)
+v.Global.sSingleDashed.Declare(String,"-------------")
+v.Global.sDoubleDashed.Declare(String,"=========")
+v.Global.sXXXLine.Declare(String,"xxxxxxxxx")
+v.Global.bFirstCallWriteProject.Declare
+V.Global.iHndl.Declare
+v.Global.iReportYear.Declare
+v.Global.iReportMonth.Declare
+v.Global.dReportDate.Declare
+v.Global.sReportDateMMsDDsYYYY.Declare
+v.Global.dNextYearEndFromReportDate.Declare
+v.Global.iNextYear.Declare
+v.Global.sNextYearEndMMsDDsYYYY.Declare
+v.Global.dPreviousMonthOfReportDate.Declare
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+'BN, Feb 20, 2018
+'Project description is at the bottom
+'BN, Feb 2019 modified to version 2. Please see the change in 'New specs for Version 2.zip'
+
+F.Intrinsic.Control.Try
+	V.Local.sError.Declare
+	v.Local.iHold.Declare
+	
+	f.Intrinsic.Date.Year(v.Ambient.Date,v.Local.iHold)
+	gui.Form.txtYear.Text(v.local.iHold)
+	f.Intrinsic.Date.Month(v.Ambient.Date,v.Local.iHold)
+	gui.Form.txtMonth.Text(v.Local.iHold)
+		
+	f.ODBC.Connection!conx.OpenCompanyConnection(600)	
+	
+	'Create table structure (Project,Description,Delete)
+	f.Data.DataTable.Create("P",True)
+	f.Data.DataTable.AddColumn("P","Project","String")
+	f.Data.DataTable.AddColumn("P","Description","String")
+	f.Data.DataTable.AddColumn("P","Delete","String")
+	'Bind and format to grid gsProj
+	gui.Form.gsProj.AddGridviewFromDatatable("PGV","P")
+	gui.Form.gsProj.SetColumnProperty("PGV","Delete","AllowEdit","False")
+	gui.Form.gsProj.SetColumnProperty("PGV","Delete","ReadOnly","True")
+	gui.Form.gsProj.ColumnEdit("PGV","Delete","editorbutton","Delete")
+	gui.Form.gsProj.SetColumnProperty("PGV","Project","MaxWidth","50")
+	gui.Form.gsProj.SetColumnProperty("PGV","Delete","MaxWidth","45")
+	gui.Form.gsProj.MainView("PGV")
+
+	gui.Form..Show
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+	F.Intrinsic.Control.CallSub("Unload")	
+F.Intrinsic.Control.EndTry
+Program.Sub.Main.End
+
+Program.Sub.cmdProjectBrwse_Click.Start
+'Browse Project number and Description
+F.Intrinsic.Control.Try
+	v.Local..BulkDeclareString(sError,sRet)
+	
+	F.Intrinsic.UI.SetBrowserHotTypeAhead(True)
+	f.Intrinsic.UI.CommonBrowser(2000,"",v.Local.sRet)
+	F.Intrinsic.Control.If(Variable.Local.sRet.IsCancel,=,False)
+		F.Intrinsic.String.Split(Variable.Local.sRet,"*!*",Variable.Local.sRet)
+		gui.Form.txtProject.Text(v.Local.sRet(0))
+		gui.Form.txtDescr.Text(v.Local.sRet(1))
+	F.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)	
+F.Intrinsic.Control.EndTry
+Program.Sub.cmdProjectBrwse_Click.End
+
+Program.Sub.cmdAdd_Click.Start
+'Add a Project to the selection grid
+f.Intrinsic.Control.Try
+	v.Local..BulkDeclareString(sError,sSQL,sRet)
+
+	'Double check the existence of the project (for cases where user types directly a project number, not by using the browser)
+	f.Intrinsic.String.Build("Select Top 1 Project,Descr from V_Project_Master where Project = '{0}'",v.Screen.Form!txtProject.Text.Trim,v.Local.sSQL)
+	f.ODBC.Connection!conx.ExecuteAndReturn(v.Local.sSQL,v.Local.sRet)
+	f.Intrinsic.Control.If(v.Local.sRet,<>,"")
+		f.Intrinsic.String.Split(v.Local.sRet,"*!*",v.Local.sRet)
+		f.Data.DataTable.AddRow("P","Project",v.Local.sRet(0),"Description",v.Local.sRet(1),"Delete","Delete")
+	f.Intrinsic.Control.Else
+		f.Intrinsic.UI.Msgbox("Non existing project","Invalid data")
+	f.Intrinsic.Control.EndIf
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)	
+F.Intrinsic.Control.EndTry
+Program.Sub.cmdAdd_Click.End
+
+Program.Sub.gsProj_RowCellClick.Start
+f.Intrinsic.Control.Try
+	V.Local.sError.Declare
+
+	'Remove a project from the selection grid
+	f.Data.DataTable.DeleteRow("P",v.Args.RowIndex)
+	F.Data.DataTable.AcceptChanges("P")
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)	
+F.Intrinsic.Control.EndTry
+Program.Sub.gsProj_RowCellClick.End
+
+Program.Sub.cmdOK_Click.Start
+F.Intrinsic.Control.Try
+	v.Local.sError.Declare
+	v.Local.sSQL.Declare
+	v.Local.sRet.Declare
+	v.Local.sHold.Declare
+	v.Local.iCnt.Declare
+	v.Local.fHold.Declare
+	v.Local.sLine.Declare
+	v.Local.sFileList.Declare
+	v.Local.sFileToWrite.Declare
+	v.Local.sNoRecordForProject.Declare
+	v.Local.sAct_Rate.Declare	
+	v.Local.fTotalActHours.Declare
+	v.Local.fTotalActLabor.Declare
+	
+	'Check Report Year, Month then set V.Global.dReportDate
+	v.Global.iReportYear.Set(v.Screen.Form!txtYear.Text)
+	v.Global.iReportMonth.Set(v.Screen.Form!txtMonth.Text)
+	f.Intrinsic.Control.If(v.Global.iReportYear,<,1900)
+		f.Intrinsic.UI.Msgbox("Invalid Year","Attention")
+		f.Intrinsic.Control.ExitSub
+	f.Intrinsic.Control.EndIf
+		f.Intrinsic.Control.If(v.Global.iReportMonth,<,1,or,v.Global.iReportMonth,>,12)
+		f.Intrinsic.UI.Msgbox("Invalid Month","Attention")
+		f.Intrinsic.Control.ExitSub
+	f.Intrinsic.Control.EndIf
+	'Format dates
+	f.Intrinsic.Date.DateSerial(v.Global.iReportYear,v.Global.iReportMonth,1,v.Global.dReportDate)
+	f.Intrinsic.String.Format(v.Global.dReportDate,"MM/DD/YYYY",v.Global.sReportDateMMsDDsYYYY)
+	f.Intrinsic.Math.Add(v.Global.iReportYear,1,v.Global.iNextYear)
+	F.Intrinsic.Date.DateSerial(v.Global.iNextYear,12,1,v.Global.dNextYearEndFromReportDate)
+	f.Intrinsic.String.Format(v.Global.dNextYearEndFromReportDate,"MM/DD/YYYY",v.Global.sNextYearEndMMsDDsYYYY)
+	f.Intrinsic.Date.DateAdd("M",-1,v.Global.dReportDate,v.Global.dPreviousMonthOfReportDate)
+	
+	'Check if user selects to export All Project or not
+	f.Intrinsic.Control.If(v.Screen.Form!chkAllProj.Value,=,1)
+		'Get all Project
+		f.Data.DataTable.Close("P")
+		f.Data.DataTable.CreateFromSQL("P","conx","Select Distinct Project,Descr as Description from V_Project_Master order by Project",True)
+		f.Intrinsic.Control.If(v.DataTable.P.RowCount,=,0)
+			f.Intrinsic.UI.Msgbox("No project in database","No Project")		
+			f.Intrinsic.Control.ExitSub
+		f.Intrinsic.Control.EndIf
+	f.Intrinsic.Control.Else
+		'Check the Datatable P has at least 1 row
+		f.Intrinsic.Control.If(v.DataTable.P.RowCount,=,0)
+			f.Intrinsic.UI.Msgbox("Please select a Project and add to the grid","No Selection")		
+			f.Intrinsic.Control.ExitSub
+		f.Intrinsic.Control.EndIf
+	f.Intrinsic.Control.EndIf
+	
+	gui.Form..Visible(False)
+	
+	'User will select the folder they want to save
+	F.Intrinsic.UI.ShowSaveFileDialog("","csv|*.csv",V.Local.sFileToWrite)
+	F.Intrinsic.Control.If(V.Local.sFileToWrite.IsCancel)
+		f.Intrinsic.Control.CallSub("Form_Unload")
+	F.Intrinsic.Control.EndIf
+	
+	'Prepare to write Lines to csv file
+	F.Intrinsic.File.GetHandle(V.Global.iHndl)
+	F.Intrinsic.File.GetFileList(V.Local.sFileToWrite,V.Local.sFileList)
+	F.Intrinsic.Control.If(V.Local.sFileList,=,"")
+		F.Intrinsic.File.OpenForAppend(V.Local.sFileToWrite,V.Global.iHndl)
+	F.Intrinsic.Control.Else
+		F.Intrinsic.File.DeleteFile(V.Local.sFileToWrite)
+		F.Intrinsic.File.OpenForAppend(V.Local.sFileToWrite,V.Global.iHndl)
+	F.Intrinsic.Control.EndIf
+	
+	'Now datatable P has at least 1 record, so proBar.Max will not throw error
+	gui.F_ProgressBar.proBar.Max(v.DataTable.P.RowCount)
+	gui.F_ProgressBar.lblAllProj.Caption(v.DataTable.P.RowCount)
+	gui.F_ProgressBar..Show
+	
+	'Loop the list of Projects, for each project, write lines to file csv
+	f.Intrinsic.Control.For(v.Local.iCnt,0,v.DataTable.P.RowCount--,1)
+		gui.F_ProgressBar.proBar.Value(v.Local.iCnt)
+		gui.F_ProgressBar.lblProjProcessing.Caption(v.Local.iCnt)
+		'Flag the v.Global.bFirstCallWriteProject to True for the first project, then later use this variable to create the dtAllProjects table derived from dtProject.
+		'Later, the dtProject records will be added to dtAllProjects for each project
+		f.Intrinsic.Control.If(v.Local.iCnt,=,0)
+			v.Global.bFirstCallWriteProject.Set(True)
+		f.Intrinsic.Control.EndIf
+		
+		'Check if finalize (modification of April 26 2019)
+		f.Intrinsic.Control.If(v.Screen.Form!chkFinalize.Value,=,1)
+			f.Intrinsic.Control.CallSub("Finalize_ETC_NextMonth","sProject",v.DataTable.P(v.Local.iCnt).Project!FieldValTrim)
+			f.Intrinsic.Control.If(v.DataTable.Act.Exists)
+				f.Data.DataTable.Close("Act")
+			f.Intrinsic.Control.EndIf
+			f.Data.DataTable.CreateFromSQL("Act","conx","Select PROJECT,PHASE,F_GROUP,STD_Labor_rate as Budg_Rate,CUR_HOURS as Budg_Hours,CUR_LABR + CUR_MATL + CUR_OUTS as Budg_Dollars,CUR_SALES as Revenue,ACT_HOURS,ACT_MATL + ACT_LABR + ACT_OUTS as Act_Dollars,Case when ACT_Hours <> 0 Then Act_Labr / Act_Hours End as Act_Rate,ACT_LABR from V_PROJECT_CURR_BUDG",True)
+			f.Data.DataView.Create("Act","ActDV")
+		f.Intrinsic.Control.EndIf
+		
+		f.Intrinsic.Control.CallSub("Write_A_Project","sProject",v.DataTable.P(v.Local.iCnt).Project!FieldValTrim,"sDescr",v.DataTable.P(v.Local.iCnt).Description!FieldValTrim)
+		'If the result v.Args.iNoRecords = 1 that means there is no record for this project, so concat the result and print later
+		f.Intrinsic.Control.If(v.Args.iNoRecord,=,1)
+			f.Intrinsic.String.Build("{0} {1}",v.Local.sNoRecordForProject,v.DataTable.P(v.Local.iCnt).Project!FieldValTrim,v.Local.sNoRecordForProject)
+		f.Intrinsic.Control.EndIf	
+	f.Intrinsic.Control.Next(v.Local.iCnt)
+	
+	gui.F_ProgressBar.proBar.Visible(False)
+	
+	f.Intrinsic.UI.InvokeWaitDialog("Calculating Grand Total...")
+	'Write Grand Total
+	f.Intrinsic.Control.If(v.DataTable.dtAllProjects.Exists)
+		F.Intrinsic.File.WriteLine(V.Global.iHndl,"")
+		f.Intrinsic.String.Replace(v.Global.sStardardDashedLine,v.Global.sSingleDashed,v.Global.sDoubleDashed,v.Global.sStardardDashedLine)	
+		F.Intrinsic.File.WriteLine(V.Global.iHndl,v.Global.sStardardDashedLine)
+		f.Intrinsic.String.Split(v.Global.sColumnsCompute,",",v.Global.sColumnsCompute)
+		v.Local.sLine.Set(",GRAND TOTAL")
+		f.Intrinsic.Control.For(v.Local.iCnt,2,v.Global.sColumnsCompute.UBound,1)
+			f.Intrinsic.String.Build("Sum([{0}])",v.Global.sColumnsCompute(v.Local.iCnt),v.Local.sHold)
+			f.Data.DataTable.Compute("dtAllProjects",v.Local.sHold,"",v.Local.fHold)
+			f.Intrinsic.String.Build("{0},{1}",v.Local.sLine,v.Local.fHold,v.Local.sLine)	
+		f.Intrinsic.Control.Next(v.Local.iCnt)	
+		'Calculate the Act_Rate = sum(Act_Labr) / sum(Act_Hours)
+		f.Intrinsic.String.Split(v.Local.sLine,",",v.Local.sLine)
+		'Set Total Actual Hours and calcualate Actual Labor
+		v.Local.fTotalActHours.Set(v.Local.sLine(5))
+		f.Intrinsic.Control.If(v.Local.fTotalActHours,<>,0)
+			f.Data.DataTable.Compute("dtAllProjects","Sum(ACT_LABR)","",v.Local.fTotalActLabor)
+			f.Intrinsic.Math.Div(v.Local.fTotalActLabor,v.Local.fTotalActHours,v.Local.fHold)
+			f.Intrinsic.String.Format(v.Local.fHold,"#0.00",v.Local.sLine(7))		
+		f.Intrinsic.Control.Else
+			V.Local.sLine(7).Set("")
+		f.Intrinsic.Control.EndIf
+		f.Intrinsic.String.Join(v.Local.sLine,",",v.Local.sLine)
+		f.Intrinsic.String.Build(",{0},GRAND TOTAL",V.Local.sLine,v.Local.sLine)
+		'Calculate Total of Phase for HOURS,LABOR $,MATERIAL $,OUTSIDE $
+		f.Data.DataTable.Compute("dtAllProjects","Sum([TotalEstHours])","",v.Local.fHold)
+		f.Intrinsic.String.Build("{0},,,{1}",v.Local.sLine,v.Local.fHold,v.Local.sLine)
+		f.Data.DataTable.Compute("dtAllProjects","Sum([TotalEstLabor])","",v.Local.fHold)
+		f.Intrinsic.String.Build("{0},{1}",v.Local.sLine,v.Local.fHold,v.Local.sLine)
+		f.Data.DataTable.Compute("dtAllProjects","Sum([TotalEstMaterial])","",v.Local.fHold)
+		f.Intrinsic.String.Build("{0},{1}",v.Local.sLine,v.Local.fHold,v.Local.sLine)
+		f.Data.DataTable.Compute("dtAllProjects","Sum([TotalEstOutside])","",v.Local.fHold)
+		f.Intrinsic.String.Build("{0},{1}",v.Local.sLine,v.Local.fHold,v.Local.sLine)		
+		F.Intrinsic.File.WriteLine(V.Global.iHndl,v.Local.sLine)	
+	f.Intrinsic.Control.EndIf
+	F.Intrinsic.File.CloseFile(V.Global.iHndl)
+	f.Intrinsic.UI.CloseWaitDialog
+	
+	f.Intrinsic.Control.If(v.Local.sNoRecordForProject,<>,"")
+		f.Intrinsic.String.Build("No records found for project: {0}",v.Local.sNoRecordForProject,v.Local.sNoRecordForProject)
+		f.Intrinsic.UI.Msgbox(v.Local.sNoRecordForProject,"No record")
+	f.Intrinsic.Control.EndIf
+	
+	f.Intrinsic.Control.CallSub("Form_Unload")
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)	
+F.Intrinsic.Control.EndTry
+Program.Sub.cmdOK_Click.End
+
+Program.Sub.Write_A_Project.Start
+F.Intrinsic.Control.Try
+	v.Local.sError.Declare
+	v.Local.sHold.Declare
+	v.Local.sSQL.Declare
+	v.Local.sRet.Declare
+	v.Local.sFilter.Declare
+	
+	v.Local.sLine.Declare
+	v.Local.sTempMonth.Declare
+	v.Local.sTempMonthDollars.Declare
+	v.Local.sMonthList.Declare
+	v.Local.sMonthListDollars.Declare	
+	v.Local.sTempDate.Declare
+	
+	v.Local.i1.Declare
+	v.Local.i2.Declare
+	v.Local.iHold.Declare	
+	v.Local.iMonthHold.Declare
+	v.Local.iYearHold.Declare
+	v.Local.iMonths.Declare
+	v.Local.iETCForward.Declare	
+	v.Local.iEAC_Hours.Declare
+	
+	v.Local.dDateHold.Declare
+	v.Local.dTempDate.Declare
+	
+	v.Local.fHold.Declare
+	v.Local.fHold2.Declare
+	v.Local.fLastMonthETCHours.Declare
+	v.Local.fLastMonthETCDollars.Declare
+	v.Local.fCurrentMonthHours.Declare
+	v.Local.fCurrentMonthDollars.Declare
+	
+	v.Local.iMonthNow.Declare
+	v.Local.iYearNow.Declare
+	
+	v.Local.fActRate.Declare
+	
+	f.Intrinsic.Date.Year(v.Ambient.Date,v.Local.iYearNow)
+	f.Intrinsic.Date.Month(v.Ambient.Date,v.Local.iMonthNow)
+	
+	'****Note****
+	'This project is based on the special context of the customer: for a particular phase, if there are Hours and Labor, there will be no Material/Outside for that phase and if there are Material/Outside, there will be no Hours/Labors for that phase. So we can apply the ETC = Hours + Material + Outside
+	'************	
+	
+	'Pull actual and budget from custom GCG_3855_EtcAct
+	f.Intrinsic.String.Build("Select PROJECT,PHASE,ETC_Group as F_GROUP,STD_Labor_rate as Budg_Rate,CUR_HOURS as Budg_Hours,CUR_LABR + CUR_MATL + CUR_OUTS as Budg_Dollars,CUR_SALES as Revenue,ACT_HOURS,ACT_MATL + ACT_LABR + ACT_OUTS as Act_Dollars,Case when ACT_Hours <> 0 Then Act_Labr / Act_Hours End as Act_Rate,ACT_LABR from GCG_3855_EtcAct where FDoMDate2 = {0} and PROJECT = '{1}' and PHASE <> 'PGMT' and F_GROUP <> 'MCOMP'",v.Global.dReportDate.FormatYYYYMMDD,v.Args.sProject,v.Local.ssql)
+	f.Intrinsic.Control.If(v.DataTable.dtProject.Exists)
+		f.Data.DataTable.Close("dtProject")
+	f.Intrinsic.Control.EndIf
+	f.Data.DataTable.CreateFromSQL("dtProject","conx",v.Local.sSQL,True)
+	'Check if there is any record from custom
+	f.Intrinsic.Control.If(v.DataTable.dtProject.RowCount,=,0)
+		f.Data.DataTable.Close("dtProject")
+		'Pull actual and budget from core if we run the report for current month
+		f.Intrinsic.Control.If(v.Local.iYearNow,=,v.Global.iReportYear,and,v.Local.iMonthNow,=,v.Global.iReportMonth)
+			f.Intrinsic.String.Build("Select PROJECT,PHASE,F_GROUP,STD_Labor_rate as Budg_Rate,CUR_HOURS as Budg_Hours,CUR_LABR + CUR_MATL + CUR_OUTS as Budg_Dollars,CUR_SALES as Revenue,ACT_HOURS,ACT_MATL + ACT_LABR + ACT_OUTS as Act_Dollars,Case when ACT_Hours <> 0 Then Act_Labr / Act_Hours End as Act_Rate,ACT_LABR from V_PROJECT_CURR_BUDG where PROJECT = '{0}' and PHASE <> 'PGMT' and F_GROUP <> 'MCOMP'",v.Args.sProject,v.Local.ssql)		
+			f.Data.DataTable.CreateFromSQL("dtProject","conx",v.Local.sSQL,True)
+			'Check if there is any record from core
+			f.Intrinsic.Control.If(v.DataTable.dtProject.RowCount,=,0)
+				Fuction.Intrinsic.Variable.AddRV("iNoReCord",1)
+				f.Intrinsic.Control.ExitSub
+			f.Intrinsic.Control.EndIf
+		f.Intrinsic.Control.EndIf
+	f.Intrinsic.Control.EndIf
+	
+	'Double check dtProject before moving on
+	f.Intrinsic.Control.If(v.DataTable.dtProject.Exists,=,False)
+		Fuction.Intrinsic.Variable.AddRV("iNoReCord",1)
+		f.Intrinsic.Control.ExitSub	
+	f.Intrinsic.Control.Else
+		f.Intrinsic.Control.If(v.DataTable.dtProject.RowCount,=,0)
+			Fuction.Intrinsic.Variable.AddRV("iNoReCord",1)
+			f.Intrinsic.Control.ExitSub
+		f.Intrinsic.Control.EndIf
+	f.Intrinsic.Control.EndIf
+
+	'Check if finalize, get actual data from core table/ per Andrew April 22 2019
+	f.Intrinsic.Control.If(v.Screen.Form!chkFinalize.Value,=,1)
+		f.Intrinsic.Control.For(v.Local.i1,0,v.DataTable.dtProject.RowCount--,1)
+			f.Intrinsic.String.Build("Project = '{0}' and Phase = '{1}' and F_Group = '{2}'",v.DataTable.dtProject(v.Local.i1).Project!FieldValString,v.DataTable.dtProject(v.Local.i1).Phase!FieldValString,v.DataTable.dtProject(v.Local.i1).F_Group!FieldValString,v.Local.sFilter)
+			f.Data.DataView.SetFilter("Act","ActDv",v.Local.sFilter)
+			f.Intrinsic.Control.If(v.DataView.Act!ActDV.RowCount,>,0)
+				v.Local.fActRate.Set(v.DataView.Act!ActDV(0).Act_Rate!FieldValString)	
+				f.Data.DataTable.SetValue("dtProject",v.Local.i1,"Act_Hours",v.DataView.Act!ActDV(0).Act_Hours!FieldValString,"Act_Dollars",v.DataView.Act!ActDV(0).Act_Dollars!FieldValString,"Act_Rate",v.Local.fActRate,"ACT_LABR",v.DataView.Act!ActDV(0).ACT_LABR!FieldValString,"Budg_Rate",v.DataView.Act!ActDV(0).Budg_Rate!FieldValString,"Budg_Hours",v.DataView.Act!ActDV(0).Budg_Hours!FieldValString,"Budg_Dollars",v.DataView.Act!ActDV(0).Budg_Dollars!FieldValString,"Revenue",v.DataView.Act!ActDV(0).Revenue!FieldValString)
+			f.Intrinsic.Control.EndIf
+		f.Intrinsic.Control.Next(v.Local.i1)
+	f.Intrinsic.Control.EndIf
+	
+	'Previous month Actual
+	f.Intrinsic.String.Build("Select PROJECT,PHASE,ETC_Group as F_GROUP,ACT_HOURS, ACT_MATL + ACT_LABR + ACT_OUTS as Act_Dollars from GCG_3855_EtcAct where FDoMDate2 = {0} and PROJECT = '{1}' and PHASE <> 'PGMT' and F_GROUP <> 'MCOMP'",v.Global.dPreviousMonthOfReportDate.FormatYYYYMMDD,v.Args.sProject,v.Local.ssql)
+	f.Intrinsic.Control.If(v.DataTable.dtPreviousAct.Exists)
+		f.Data.DataTable.Close("dtPreviousAct")
+	f.Intrinsic.Control.EndIf
+	f.Data.DataTable.CreateFromSQL("dtPreviousAct","conx",v.Local.sSQL,True)
+	f.Data.DataView.Create("dtPreviousAct","dtPreviousActDV")
+	
+	'Get number of months from current month to next year end: iMonths = iEAC_Hours + 1; iEAC_Hours = iETCForward + 1 ; 	
+	F.Intrinsic.Date.DateDiff("M",v.Global.dReportDate,v.Global.dNextYearEndFromReportDate,v.Local.iMonths)
+	f.Intrinsic.Math.Add(v.Local.iMonths,1,v.Local.iETCForward)
+	f.Intrinsic.Math.Add(v.Local.iETCForward,1,v.Local.iEAC_Hours)
+	f.Intrinsic.Math.Add(v.Local.iEAC_Hours,1,v.Local.iMonths)
+	
+	'Get custom ETC data for this project with date FDoMDate2 (First Date o Month Date) > v.Global.dReportDate.FormatYYYYMMDD
+	f.Intrinsic.Control.If(v.DataTable.dtETCPrj.Exists)
+		f.Data.DataTable.Close("dtETCPrj")
+	f.Intrinsic.Control.EndIf
+	f.Intrinsic.String.Build("Select PROJECT,PHASE,ETC_Group,ETC_Year,ETC_Month,IsNull(ETC_Hour,0) as ETC_Hours,IsNull(ETC_DollarPerHour,0) as ETC_DollarPerHour,IsNull(ETC_Labor,0) as ETC_Labor,IsNull(ETC_Material,0) as ETC_Material,IsNull(ETC_Outside,0) as ETC_Outside,IsNull(ETC_Revenue,0) as ETC_Revenue,IsNull(ETC_Value,0) as ETC_Value,IsNull(ETC_Hour,0) + IsNull(ETC_Material,0) + IsNull(ETC_Outside,0) as HoursMaterialOutside, Year_Month, FDoMDate2 from GCG_3855_ETC where FDoMDate2 > {0} and Project = '{1}' Order by  Project,Phase,ETC_Group,ETC_Year,ETC_Month",v.Global.dReportDate.FormatYYYYMMDD,v.Args.sProject,v.Local.sSQL)
+	f.Data.DataTable.CreateFromSQL("dtETCPrj","conx",v.Local.sSQL,True)
+	f.Data.DataTable.AddColumn("dtETCPrj","FDoMDate","Date","1900-01-01")
+	f.Data.DataView.Create("dtETCPrj","dtETCPrjDV")
+	
+	'Get custom ETC data that is saved by unattended program that grabbed Actual and Estimate Data of the report month that happened at the end of previous month.
+	'For example, we are on February 28th, 2019. In the past, on Jan 31th, 2019, the unattended program GCG_3855_Unattended grabbed the estimate for month Feb 2019 (X amount) and saved to custom table. The unattended program also grabbed the Actual Hours and Actual Dollars at that time (Y amount). So today Feb 28, we run the report, we pull X amount and Y amount from custom table for comparison.
+	f.Intrinsic.Control.If(v.DataTable.dtEstAtLastMo.Exists)
+		f.Data.DataTable.Close("dtEstAtLastMo")
+	f.Intrinsic.Control.EndIf
+	f.Intrinsic.String.Build("Select PROJECT,PHASE,ETC_Group,ETC_Year,ETC_Month,IsNull(ETC_Hour,0) as ETC_Hours,IsNull(ETC_DollarPerHour,0) as ETC_DollarPerHour,IsNull(ETC_Labor,0) as ETC_Labor,IsNull(ETC_Material,0) as ETC_Material,IsNull(ETC_Outside,0) as ETC_Outside,IsNull(ETC_Revenue,0) as ETC_Revenue,IsNull(ETC_Value,0) as ETC_Value,IsNull(ETC_Hour,0) + IsNull(ETC_Material,0) + IsNull(ETC_Outside,0) as HoursMaterialOutside, Year_Month, FDoMDate2 from GCG_3855_EtcAct where  FDoMDate2 = {0} and Project = '{1}' Order by Project,Phase,ETC_Group,ETC_Year,ETC_Month",v.Global.dReportDate.FormatYYYYMMDD,v.Args.sProject,v.Local.sSQL)
+	f.Data.DataTable.CreateFromSQL("dtEstAtLastMo","conx",v.Local.sSQL,True)
+	f.Data.DataView.Create("dtEstAtLastMo","dtEstAtLastMoDV")
+	
+	'Add Estimates Columns. (for ETC values) (example: if today is Feb 2019, the columns added will be 2019_03, 2019_04, ...,2020_12,Forward,EAC_Hours,EAC_Hours => In which 2020_12 is the end of next year.)
+	f.Intrinsic.Control.For(v.Local.i1,0,v.Local.iMonths,1)
+		f.Intrinsic.Control.If(v.Local.i1,=,0)
+			'Add Last Months and Current Months columns (4 columns) 
+			'******Important: v.local.dDateHold and v.local.dTempDate are used to increment, do not use for other purpose within the loop, otherwise, it will create unexpected result!!! ********************************
+			v.Local.dDateHold.Set(v.Global.dReportDate)
+			f.Data.DataTable.AddColumn("dtProject","Last_Month_ETC_Hours","Float")
+			f.Data.DataTable.AddColumn("dtProject","Last_Month_ETC_Dollars","Float")
+			f.Data.DataTable.AddColumn("dtProject","Act_Current_Month_Hours","Float")
+			f.Data.DataTable.AddColumn("dtProject","Act_Current_Month_Dollars","Float")
+			v.Local.sMonthList.Set("#CurrentMonth")
+			v.Local.sMonthListDollars.Set("#CurrentMonth")
+			v.Local.sTempMonth.Set("Last_Month_ETC_Hours,Last_Month_ETC_Dollars,Act_Current_Month_Hours,Act_Current_Month_Dollars")
+		f.Intrinsic.Control.Elseif(v.Local.i1,<,v.Local.iETCForward)
+			'Add other Months: first create month label to sTempMonths, then and column sTempMonth. Likewise, sTempMonthDollars for dollars columns
+			f.Intrinsic.Date.DateAdd("M",1,v.Local.dDateHold,v.Local.dDateHold)	
+			F.Intrinsic.Date.Year(v.Local.dDateHold,V.Local.iYearHold)
+			F.Intrinsic.Date.Month(v.Local.dDateHold,V.Local.iMonthHold)
+			f.Intrinsic.String.LPad(v.Local.iMonthHold,"0",2,v.Local.sHold)	
+			f.Intrinsic.String.Build("{0}_{1}",v.Local.iYearHold,v.Local.sHold,v.Local.sTempMonth)
+			F.Intrinsic.Date.DateSerial(v.Local.iYearHold,V.Local.iMonthHold,1,v.Local.dTempDate)
+			f.Intrinsic.String.Format(v.Local.dTempDate,"MM/DD/YYYY",v.Local.sTempDate)
+			f.Data.DataTable.AddColumn("dtProject",v.Local.sTempMonth,"Float")
+			f.Intrinsic.String.Build("{0},{1}",v.Local.sMonthList,v.Local.sTempMonth,v.Local.sMonthList)
+			'sTempMonthDollars
+			f.Intrinsic.String.Build("{0}_$",v.Local.sTempMonth,v.Local.sTempMonthDollars)
+			f.Data.DataTable.AddColumn("dtProject",v.Local.sTempMonthDollars,"Float")
+			f.Intrinsic.String.Build("{0},{1}",v.Local.sMonthListDollars,v.Local.sTempMonthDollars,v.Local.sMonthListDollars)
+		f.Intrinsic.Control.ElseIf(v.Local.i1,=,v.Local.iETCForward)
+			'Add Forward column
+			v.Local.sTempMonth.Set("Forward")
+			f.Data.DataTable.AddColumn("dtProject","Forward","Float")
+			f.Intrinsic.String.Build("{0},{1}",v.Local.sMonthList,v.Local.sTempMonth,v.Local.sMonthList)		
+			v.Local.sTempMonthDollars.Set("Forward_$")
+			f.Data.DataTable.AddColumn("dtProject","Forward_$","Float")		
+			f.Intrinsic.String.Build("{0},{1}",v.Local.sMonthListDollars,v.Local.sTempMonthDollars,v.Local.sMonthListDollars)
+		f.Intrinsic.Control.ElseIf(v.Local.i1,=,v.Local.iEAC_Hours)
+			v.Local.sTempMonth.Set("EAC_Hours")
+			f.Data.DataTable.AddColumn("dtProject",v.Local.sTempMonth,"Float")
+		f.Intrinsic.Control.Else
+			'EAC_Dollars
+			v.Local.sTempMonth.Set("EAC_Dollars")
+			f.Data.DataTable.AddColumn("dtProject",v.Local.sTempMonth,"Float")
+		f.Intrinsic.Control.EndIf
+		
+		'Populate values for the column added
+		f.Intrinsic.Control.For(v.Local.i2,0,v.DataTable.dtProject.RowCount--,1)	
+			'Forward
+			f.Intrinsic.Control.If(v.Local.sTempMonth,=,"Forward")
+				'Calculate Forward for HoursMaterialOutside for the Phase and ETC_Group with date > nextyearend
+				f.Intrinsic.String.Build("Phase = '{0}' and ETC_Group = '{1}' and FDoMDate2 > {2}",v.DataTable.dtProject(v.Local.i2).Phase!FieldValTrim,v.DataTable.dtProject(v.Local.i2).F_Group!FieldValTrim,v.Global.dNextYearEndFromReportDate.FormatYYYYMMDD,v.Local.sFilter)
+				'HoursMaterialOutside
+				f.Data.DataTable.Compute("dtETCPrj","Sum([HoursMaterialOutside])",v.Local.sFilter,v.Local.fHold)
+				f.Data.DataTable.SetValue("dtProject",v.Local.i2,"Forward",v.Local.fHold)
+				'ETC_Value for Forward_$
+				f.Data.DataTable.Compute("dtETCPrj","Sum([ETC_Value])",v.Local.sFilter,v.Local.fHold)
+				f.Data.DataTable.SetValue("dtProject",v.Local.i2,"Forward_$",v.Local.fHold)
+				
+			f.Intrinsic.Control.Elseif(v.Local.sTempMonth,=,"EAC_Hours")			
+				'Calcualte all ETC_Hours from next month to the future
+				f.Intrinsic.String.Build("Phase = '{0}' and ETC_Group = '{1}'",v.DataTable.dtProject(v.Local.i2).Phase!FieldValTrim,v.DataTable.dtProject(v.Local.i2).F_Group!FieldValTrim,v.Local.sFilter)
+				f.Data.DataTable.Compute("dtETCPrj","Sum([ETC_Hours])",v.Local.sFilter,v.Local.fHold)
+				'Add Actual Hours
+				f.Intrinsic.Math.Add(v.DataTable.dtProject(v.Local.i2).ACT_HOURS!FieldValString,v.Local.fHold,v.Local.fHold)
+				f.Data.DataTable.SetValue("dtProject",v.Local.i2,"EAC_Hours",v.Local.fHold)
+				
+			f.Intrinsic.Control.Elseif(v.Local.sTempMonth,=,"EAC_Dollars")				
+				'Calcualte all ETC_Hours from next month to the future
+				f.Intrinsic.String.Build("Phase = '{0}' and ETC_Group = '{1}'",v.DataTable.dtProject(v.Local.i2).Phase!FieldValTrim,v.DataTable.dtProject(v.Local.i2).F_Group!FieldValTrim,v.Local.sFilter)
+				f.Data.DataTable.Compute("dtETCPrj","Sum([ETC_Value])",v.Local.sFilter,v.Local.fHold)
+				'Add Actual Dollars
+				f.Intrinsic.Math.Add(v.DataTable.dtProject(v.Local.i2).Act_Dollars!FieldValString,v.Local.fHold,v.Local.fHold)
+				f.Data.DataTable.SetValue("dtProject",v.Local.i2,"EAC_Dollars",v.Local.fHold)
+				
+			f.Intrinsic.Control.ElseIf(v.Local.sTempMonth,<>,"Last_Month_ETC_Hours,Last_Month_ETC_Dollars,Act_Current_Month_Hours,Act_Current_Month_Dollars")
+				'Get the HoursMaterialOutside for each month. Again: This project is based on the special context of the customer: for a particular phase, if there are Hours and Labor, there will be no Material/Outside for that phase and if there are Material/Outside, there will be no Hours/Labors for that phase. So we can apply the ETC = Hours + Material + Outside
+				f.Intrinsic.String.Build("Phase = '{0}' and ETC_Group = '{1}' and FDoMDate2 = {2}",v.DataTable.dtProject(v.Local.i2).Phase!FieldValTrim,v.DataTable.dtProject(v.Local.i2).F_Group!FieldValTrim,v.Local.dTempDate.FormatYYYYMMDD,v.Local.sFilter)
+				f.Data.DataView.SetFilter("dtETCPrj","dtETCPrjDV",v.Local.sFilter)
+				f.Intrinsic.Control.If(v.DataView.dtETCPrj!dtETCPrjDV.RowCount,>,0)
+					v.Local.fHold.Set(v.DataView.dtETCPrj!dtETCPrjDV(0).HoursMaterialOutside!FieldValString)
+					v.Local.fHold2.Set(v.DataView.dtETCPrj!dtETCPrjDV(0).ETC_Value!FieldValString)
+				f.Intrinsic.Control.Else
+					v.Local.fHold.Set(0)
+					v.Local.fHold2.Set(0)
+				f.Intrinsic.Control.EndIf
+				f.Data.DataTable.SetValue("dtProject",v.Local.i2,v.Local.sTempMonth,v.Local.fHold)	
+				f.Data.DataTable.SetValue("dtProject",v.Local.i2,v.Local.sTempMonthDollars,v.Local.fHold2)	
+				
+			f.Intrinsic.Control.ElseIf(v.Local.sTempMonth,=,"Last_Month_ETC_Hours,Last_Month_ETC_Dollars,Act_Current_Month_Hours,Act_Current_Month_Dollars")			
+				f.Intrinsic.String.Build("Phase = '{0}' and ETC_Group = '{1}'",v.DataTable.dtProject(v.Local.i2).Phase!FieldValTrim,v.DataTable.dtProject(v.Local.i2).F_Group!FieldValTrim,v.Local.sFilter)
+				f.Data.DataView.SetFilter("dtEstAtLastMo","dtEstAtLastMoDV",v.Local.sFilter)
+				f.Intrinsic.String.Build("Phase = '{0}' and F_Group = '{1}'",v.DataTable.dtProject(v.Local.i2).Phase!FieldValTrim,v.DataTable.dtProject(v.Local.i2).F_Group!FieldValTrim,v.Local.sFilter)
+				f.Data.DataView.SetFilter("dtPreviousAct","dtPreviousActDV",v.Local.sFilter)
+				f.Intrinsic.Control.If(v.DataView.dtEstAtLastMo!dtEstAtLastMoDV.RowCount,>,0)			
+					v.Local.fLastMonthETCHours.Set(v.DataView.dtEstAtLastMo!dtEstAtLastMoDV(0).ETC_Hours!FieldValString)
+					v.Local.fLastMonthETCDollars.Set(v.DataView.dtEstAtLastMo!dtEstAtLastMoDV(0).ETC_Value!FieldValString)		
+				f.Intrinsic.Control.Else
+					v.Local.fLastMonthETCHours.Set(0)
+					v.Local.fLastMonthETCDollars.Set(0)
+				f.Intrinsic.Control.EndIf
+				f.Intrinsic.Control.If(v.DataView.dtPreviousAct!dtPreviousActDV.RowCount,>,0)			
+					v.Local.fCurrentMonthHours.Set(v.DataView.dtPreviousAct!dtPreviousActDV(0).Act_Hours!FieldValString)
+					v.Local.fCurrentMonthDollars.Set(v.DataView.dtPreviousAct!dtPreviousActDV(0).Act_Dollars!FieldValString)			
+				f.Intrinsic.Control.Else
+					v.Local.fCurrentMonthHours.Set(0)
+					v.Local.fCurrentMonthDollars.Set(0)
+				f.Intrinsic.Control.EndIf				
+				
+				f.Intrinsic.Math.Sub(v.DataTable.dtProject(v.Local.i2).Act_Hours!FieldValString,v.Local.fCurrentMonthHours,v.Local.fCurrentMonthHours)
+				f.Intrinsic.Math.Sub(v.DataTable.dtProject(v.Local.i2).Act_Dollars!FieldValString,v.Local.fCurrentMonthDollars,v.Local.fCurrentMonthDollars)
+				
+				f.Data.DataTable.SetValue("dtProject",v.Local.i2,"Last_Month_ETC_Hours",v.Local.fLastMonthETCHours)
+				f.Data.DataTable.SetValue("dtProject",v.Local.i2,"Last_Month_ETC_Dollars",v.Local.fLastMonthETCDollars)			
+				f.Data.DataTable.SetValue("dtProject",v.Local.i2,"Act_Current_Month_Hours",v.Local.fCurrentMonthHours)
+				f.Data.DataTable.SetValue("dtProject",v.Local.i2,"Act_Current_Month_Dollars",v.Local.fCurrentMonthDollars)			
+			f.Intrinsic.Control.EndIf	
+		f.Intrinsic.Control.Next(v.Local.i2)	
+		
+	f.Intrinsic.Control.Next(v.Local.i1)
+	f.Intrinsic.String.Replace(v.Local.sMonthList,"#CurrentMonth,","",v.Local.sMonthList)
+	f.Intrinsic.String.Replace(v.Local.sMonthListDollars,"#CurrentMonth,","",v.Local.sMonthListDollars)	
+	
+	'Add Budget Hours Variance column
+	f.Data.DataTable.AddExpressionColumn("dtProject","Budg_Hours_Var","Float","IsNull(EAC_Hours,0) - IsNull(Budg_HOURS,0)")
+	'Add Budget Dollars Variance column
+	f.Data.DataTable.AddExpressionColumn("dtProject","Budg_Dollars_Var","Float","IsNull(EAC_Dollars,0) - IsNull(BUDG_DOLLARS,0)")
+	'Add columns Total  Estimate = Nextmonth + ....+ Forward (for all the 4 very right side columns)
+	f.Data.DataTable.AddColumn("dtProject","TotalEstHours","Float",0)
+	f.Data.DataTable.AddColumn("dtProject","TotalEstLabor","Float",0)
+	f.Data.DataTable.AddColumn("dtProject","TotalEstMaterial","Float",0)
+	f.Data.DataTable.AddColumn("dtProject","TotalEstOutside","Float",0)
+	'Populate columns Total Estimate
+	f.Intrinsic.Control.For(v.Local.i1,0,v.DataTable.dtProject.RowCount--,1)	
+		f.Intrinsic.String.Build("Phase = '{0}' and ETC_Group = '{1}'",v.DataTable.dtProject(v.Local.i1).Phase!FieldValTrim,v.DataTable.dtProject(v.Local.i1).F_Group!FieldValTrim,v.Local.sFilter)
+		f.Data.DataTable.Compute("dtETCPrj","Sum([ETC_Hours])",v.Local.sFilter,v.Local.fHold)
+		f.Data.DataTable.SetValue("dtProject",v.Local.i1,"TotalEstHours",v.Local.fHold)
+		f.Data.DataTable.Compute("dtETCPrj","Sum([ETC_Labor])",v.Local.sFilter,v.Local.fHold)
+		f.Data.DataTable.SetValue("dtProject",v.Local.i1,"TotalEstLabor",v.Local.fHold)
+		f.Data.DataTable.Compute("dtETCPrj","Sum([ETC_Material])",v.Local.sFilter,v.Local.fHold)
+		f.Data.DataTable.SetValue("dtProject",v.Local.i1,"TotalEstMaterial",v.Local.fHold)
+		f.Data.DataTable.Compute("dtETCPrj","Sum([ETC_Outside])",v.Local.sFilter,v.Local.fHold)
+		f.Data.DataTable.SetValue("dtProject",v.Local.i1,"TotalEstOutside",v.Local.fHold)
+	f.Intrinsic.Control.Next(v.Local.i1)
+
+	
+	f.Intrinsic.Control.If(v.DataView.dtProject!dvProject.Exists)
+		f.Data.DataView.Close("dtProject","dvProject")
+	f.Intrinsic.Control.EndIf
+	f.Data.DataView.Create("dtProject","dvProject",22,"","")
+	'If this is the first project in the list, create dtAllProjects and copy dtProject to dtAllProjects. For the following project, just copy dtProject to dtAllProjects
+	f.Intrinsic.Control.If(v.Global.bFirstCallWriteProject)	
+		f.Data.DataView.ToDataTable("dtProject","dvProject","dtAllProjects",True)
+		'Build standard dashedLine
+		v.Global.sStardardDashedLine.Set(",,")	
+		f.Intrinsic.String.Split(v.Local.sMonthList,",",v.Local.sMonthList)
+		f.Intrinsic.Math.Add(v.Local.sMonthList.UBound,21,v.Local.iHold)
+		f.Intrinsic.Control.For(v.Local.i1,0,v.Local.iHold,1)
+			f.Intrinsic.String.Build("{0},{1}",v.Global.sStardardDashedLine,v.Global.sSingleDashed,v.Global.sStardardDashedLine)
+		f.Intrinsic.Control.Next(v.Local.i1)	
+		f.Intrinsic.String.Join(v.Local.sMonthList,",",v.Local.sMonthList)
+		f.Intrinsic.String.Build("Group,Budg Rate,Budg Hours,Budg Dollars,Revenue,Act Hours,Act Dollars,Act Rate,Last_Month_ETC_Hours,Last_Month_ETC_Dollars,Act_Current_Month_Hours,Act_Current_Month_Dollars,{0},EAC Hours,EAC Dollars,Budg Hrs Var,Budg $ Var",v.Local.sMonthList,v.Global.sTitle)
+		f.Intrinsic.String.Build("Group,Budg_Rate,Budg_Hours,Budg_Dollars,Revenue,Act_Hours,Act_Dollars,Act_Rate,Last_Month_ETC_Hours,Last_Month_ETC_Dollars,Act_Current_Month_Hours,Act_Current_Month_Dollars,{0},EAC_Hours,EAC_Dollars,Budg_Hours_Var,Budg_Dollars_Var",v.local.sMonthListDollars,v.Global.sColumnsCompute)
+		f.Intrinsic.String.Build("Group,Budg_Rate,Budg_Hours,Budg_Dollars,Revenue,Act_Hours,Act_Dollars,Act_Rate,Last_Month_ETC_Hours,Last_Month_ETC_Dollars,Act_Current_Month_Hours,Act_Current_Month_Dollars,{0},EAC_Hours,EAC_Dollars,Budg_Hours_Var,Budg_Dollars_Var",v.local.sMonthList,v.Global.sColumnsCompute2)
+		v.Global.bFirstCallWriteProject.Set(False)		
+		'Write tillte for Freezepan feature in Excel		
+		f.Intrinsic.String.Build("Report Month,{0}_{1}",v.Global.iReportYear,v.Global.iReportMonth,v.Local.sLine)
+		F.Intrinsic.File.WriteLine(V.Global.iHndl,v.local.sLine)	
+		f.Intrinsic.String.Build("Project/Phase,{0}},,,Total ETC:,HOURS,LABOR $,MATERIAL $,OUTSIDE ${1}{1}",v.Global.sTitle,v.Ambient.NewLine,v.Local.sLine)		
+		F.Intrinsic.File.WriteLine(V.Global.iHndl,v.local.sLine)			
+	f.Intrinsic.Control.Else
+		F.Data.DataTable.Merge("dtProject","dtAllProjects",False,2)
+	f.Intrinsic.Control.EndIf
+	
+	'Write the Project header to the Excel File
+	f.Intrinsic.String.Build("Project: {0}{1}Description: {2}{1}",v.Args.sProject,v.Ambient.NewLine,v.Args.sDescr,v.Local.sLine)
+	F.Intrinsic.File.WriteLine(V.Global.iHndl,v.Local.sLine)
+	
+	'Continue to write details
+	f.Intrinsic.Control.CallSub("Write_Phases","sMonthList",v.Local.sMonthList,"myProject",v.Args.sProject)
+	f.Intrinsic.Control.CallSub("Write_Project_Summary_Footer","sMonthList",v.Local.sMonthList,"myProject",v.Args.sProject)	
+	
+	Fuction.Intrinsic.Variable.AddRV("iNoReCord",0)
+	
+F.Intrinsic.Control.Catch
+	F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)	
+F.Intrinsic.Control.EndTry
+Program.Sub.Write_A_Project.End
+
+Program.Sub.Write_Phases.Start
+'Write the a Phases, for each Phase
+'1/Write Phase Lines (Groups in each Phase)
+'2/Write Single Dashed Line
+'3/Write Phase Total
+'4/Write Phase Summary Header
+'5/Write Phase Summary values
+f.Intrinsic.Control.Try
+	v.Local..BulkDeclareString(sError,sSQL,sRet,sHold,sLine,sPhaseFilter,sActRateLine,sMonthList,sTitle,sColumnsCompute,sForPhaseSummaryCalc)
+	v.Local..BulkDeclareLong(i1,i2,i3,iHold)
+	v.Local..BulkDeclareFloat(fHold,fCulmulated_EAC,fBudg_GM,fAct_GM,fEAC_Dollars)
+	v.Local.fTotalEAC_Dollars_For_WholePhase.Declare
+	v.Local.fTotalAct_Dollars_For_WholePhase.Declare
+	v.Local.sPctCompleteWholePhase.Declare
+	v.Local.sRevenueWholePhase.Declare
+	v.Local.sRevenueRecognition.Declare
+	v.Local.sRevenueRecogITD.Declare
+	
+	v.Local.sPreviousPctComplete.Declare
+	v.Local.sPreviousMonthRR.Declare
+	v.Local.sRevenueRecogITDMonth.Declare
+	v.Local.sFollowingRevenueRecogMTD.Declare
+	v.Local.sPreviousMonthRRMonth.Declare					
+	v.Local.sRevenueRecogMTD.Declare
+	v.Local.sPrevHold.Declare
+	v.Local.sFirstRevenueRecogMTD.Declare
+	v.Local.sSecondRevenueRecogMTD.Declare
+	v.Local.sNextMonthRevenueRecogITD.Declare	
+	
+	v.Local.dPreviousMonth.Declare
+	v.Local.iPreviousMonth.Declare
+	v.Local.iPreviousYear.Declare
+	v.Local.fPreviousPctComplete.Declare
+	
+	v.Local.fTotalActHoursPhase.Declare
+	v.Local.fTotalActLaborPhase.Declare
+	
+	f.Intrinsic.Date.Month(v.Global.dReportDate,v.Global.iReportMonth)	
+		
+	f.Intrinsic.String.Split(v.Global.sColumnsCompute,",",v.Local.sColumnsCompute)
+	f.Intrinsic.String.Split(v.Args.sMonthList,",",v.Local.sMonthList)
+	
+	'Get the Phase list of the project
+	F.Data.DataView.ToDataTableDistinct("dtProject","dvProject","dtDistinctPhases","Phase",True)
+	'Loop by each Phase
+	f.Intrinsic.Control.For(v.Local.i1,0,v.DataTable.dtDistinctPhases.RowCount--,1)
+		'Write the title (header) for the phase
+		f.Intrinsic.String.Build("Phase: {0}{1},{2},{3},,Total ETC:,HOURS,LABOR $,MATERIAL $,OUTSIDE $",v.DataTable.dtDistinctPhases(v.Local.i1).Phase!FieldValString,v.Ambient.NewLine,v.Global.sTitle,v.DataTable.dtDistinctPhases(v.Local.i1).Phase!FieldValString,v.Local.sLine)		
+		F.Intrinsic.File.WriteLine(V.Global.iHndl,v.Local.sLine)
+		'1/Write Phase Lines (each line is are Group)
+		f.Intrinsic.String.Build("PHASE = '{0}'",v.DataTable.dtDistinctPhases(v.Local.i1).Phase!FieldValString,v.Local.sPhaseFilter)
+		f.Data.DataView.SetFilter("dtProject","dvProject",v.Local.sPhaseFilter)
+		'===Dataview for a Phase is created, now loop through every records of that dataview. Each record is an F_Group ===
+		f.Intrinsic.Control.For(v.Local.i2,0,V.DataView.dtProject!dvProject.RowCount--,1)		
+			'Build Group,Budg_Rate,Budg_Hours,Budg_Dollars,Revenue,Act_Hours,Act_Dollars,Act_Rate
+			f.Intrinsic.Control.If(V.DataView.dtProject!dvProject(v.Local.i2).ACT_Rate!FieldValString,<>,"")
+				f.Intrinsic.String.Format(V.DataView.dtProject!dvProject(v.Local.i2).ACT_Rate!FieldValString,"#0.00",v.Local.sActRateLine)
+			f.Intrinsic.Control.Else
+				v.Local.sActRateLine.Set("")
+			f.Intrinsic.Control.EndIf			
+			'Build cells for basic columns like Group,Budg_Rate,Budg_Hours,Budg_Dollars,Revenue,Act_Hours,Act_Dollars,Act_Rate
+			'"Added: Last_Month_ETC_Hours,Last_Month_ETC_Dollars,Act_Current_Month_Hours,Act_Current_Month_Dollars"
+			f.Intrinsic.String.Build(",{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11}",V.DataView.dtProject!dvProject(v.Local.i2).F_Group!FieldValString,V.DataView.dtProject!dvProject(v.Local.i2).Budg_Rate!FieldValString,V.DataView.dtProject!dvProject(v.Local.i2).Budg_Hours!FieldValFloat,V.DataView.dtProject!dvProject(v.Local.i2).Budg_Dollars!FieldValFloat,V.DataView.dtProject!dvProject(v.Local.i2).Revenue!FieldValFloat,V.DataView.dtProject!dvProject(v.Local.i2).ACT_HOURS!FieldValFloat,V.DataView.dtProject!dvProject(v.Local.i2).ACT_Dollars!FieldValFloat,v.Local.sActRateLine,V.DataView.dtProject!dvProject(v.Local.i2).Last_Month_ETC_Hours!FieldValFloat,V.DataView.dtProject!dvProject(v.Local.i2).Last_Month_ETC_Dollars!FieldValFloat,V.DataView.dtProject!dvProject(v.Local.i2).Act_Current_Month_Hours!FieldValFloat,V.DataView.dtProject!dvProject(v.Local.i2).Act_Current_Month_Dollars!FieldValFloat,V.Local.sLine)		
+			
+			'Continue to concatenate with the ETC_Months
+			f.Intrinsic.Control.For(v.Local.i3,0,v.Local.sMonthList.UBound,1)
+				'get the ETC column name: v.Local.sMonthList(v.Local.i3)
+				v.Local.sHold.Set(v.Local.sMonthList(v.Local.i3))
+				f.Intrinsic.String.Build("{0},{1}",v.Local.sLine,V.DataView.dtProject!dvProject(v.Local.i2).[v.Local.sHold]!FieldValString,v.Local.sLine)
+			f.Intrinsic.Control.Next(v.Local.i3)
+			'Continue to concatenate with EAC Hours, EAC Dollars,Budg Hours Var,Budg Dollars Var,F_Group,,,HOURS,LABOR $,MATERIAL $,OUTSIDE $ (The last 4 is newly added: TotalEstHours,TotalEstLabor,TotalEstMaterial,TotalEstOutside)
+			f.Intrinsic.String.Build("{0},{1},{2},{3},{4},{5},,,{6},{7},{8},{9}",v.Local.sLine,V.DataView.dtProject!dvProject(v.Local.i2).EAC_Hours!FieldValFloat,V.DataView.dtProject!dvProject(v.Local.i2).EAC_Dollars!FieldValFloat,V.DataView.dtProject!dvProject(v.Local.i2).Budg_Hours_Var!FieldValFloat,V.DataView.dtProject!dvProject(v.Local.i2).Budg_Dollars_Var!FieldValFloat,V.DataView.dtProject!dvProject(v.Local.i2).F_Group!FieldValString,V.DataView.dtProject!dvProject(v.Local.i2).TotalEstHours!FieldValString,V.DataView.dtProject!dvProject(v.Local.i2).TotalEstLabor!FieldValString,V.DataView.dtProject!dvProject(v.Local.i2).TotalEstMaterial!FieldValString,V.DataView.dtProject!dvProject(v.Local.i2).TotalEstOutside!FieldValString,v.Local.sLine)		
+			F.Intrinsic.File.WriteLine(V.Global.iHndl,v.Local.sLine)			
+		f.Intrinsic.Control.Next(v.Local.i2)	
+		
+		'About to write Summary for the phase
+		'2/Write Single DashedLine of the Phase
+		F.Intrinsic.File.WriteLine(V.Global.iHndl,v.Global.sStardardDashedLine)
+		'3/Write Phase Total	
+		f.Intrinsic.String.Build(",Phase {0} Total",v.DataTable.dtDistinctPhases(v.Local.i1).Phase!FieldValTrim,v.Local.sLine)
+		f.Intrinsic.Control.For(v.Local.i2,2,v.Local.sColumnsCompute.UBound,1)	
+			f.Intrinsic.String.Build("Sum([{0}])",v.Local.sColumnsCompute(v.Local.i2),v.Local.sHold)
+			f.Data.DataTable.Compute("dtProject",v.Local.sHold,v.Local.sPhaseFilter,v.Local.fHold)
+			f.Intrinsic.Control.If(v.Local.sColumnsCompute(v.Local.i2),=,"EAC_Dollars")	
+				'set to v.Local.fTotalEAC_Dollars_For_WholePhase for later calculation 
+				v.Local.fTotalEAC_Dollars_For_WholePhase.Set(v.Local.fHold)
+			f.Intrinsic.Control.EndIf
+			f.Intrinsic.Control.If(v.Local.sColumnsCompute(v.Local.i2),=,"Act_Dollars")
+				'set to v.Local.fTotalAct_Dollars_For_WholePhase for later calculation 
+				v.Local.fTotalAct_Dollars_For_WholePhase.Set(v.Local.fHold)
+			f.Intrinsic.Control.EndIf
+			f.Intrinsic.String.Build("{0},{1}",v.Local.sLine,v.Local.fHold,v.Local.sLine)			
+		f.Intrinsic.Control.Next(v.Local.i2)
+		'Calculate the Act_Rate = sum(Act_Labr) / sum(Act_Hours)
+		
+		f.Intrinsic.String.Split(v.Local.sLine,",",v.Local.sLine)
+		v.Local.fTotalActHoursPhase.Set(v.Local.sLine(5))
+		f.Intrinsic.Control.If(v.Local.fTotalActHoursPhase,<>,0)
+			f.Data.DataTable.Compute("dtProject","Sum(ACT_LABR)",v.Local.sPhaseFilter,v.Local.fTotalActLaborPhase)
+			f.Intrinsic.Math.Div(v.Local.fTotalActLaborPhase,v.Local.fTotalActHoursPhase,v.Local.fHold)
+			f.Intrinsic.String.Format(v.Local.fHold,"#0.00",v.Local.sLine(7))
+		f.Intrinsic.Control.Else
+			V.Local.sLine(7).Set("")
+		f.Intrinsic.Control.EndIf	
+		f.Intrinsic.String.Join(v.Local.sLine,",",v.Local.sLine)
+		'Set to v.local.sForPhaseSummaryCalc for later calculation
+		v.Local.sForPhaseSummaryCalc.Set(v.Local.sLine)
+		f.Intrinsic.String.Build(",{0},Total Phase {1}",v.Local.sLine,v.DataTable.dtDistinctPhases(v.Local.i1).Phase!FieldValTrim,v.Local.sLine)		
+		'Calculate Total of Phase for HOURS,LABOR $,MATERIAL $,OUTSIDE $
+		f.Data.DataTable.Compute("dtProject","Sum([TotalEstHours])",v.Local.sPhaseFilter,v.Local.fHold)
+		f.Intrinsic.String.Build("{0},,,{1}",v.Local.sLine,v.Local.fHold,v.Local.sLine)
+		f.Data.DataTable.Compute("dtProject","Sum([TotalEstLabor])",v.Local.sPhaseFilter,v.Local.fHold)
+		f.Intrinsic.String.Build("{0},{1}",v.Local.sLine,v.Local.fHold,v.Local.sLine)
+		f.Data.DataTable.Compute("dtProject","Sum([TotalEstMaterial])",v.Local.sPhaseFilter,v.Local.fHold)
+		f.Intrinsic.String.Build("{0},{1}",v.Local.sLine,v.Local.fHold,v.Local.sLine)
+		f.Data.DataTable.Compute("dtProject","Sum([TotalEstOutside])",v.Local.sPhaseFilter,v.Local.fHold)
+		f.Intrinsic.String.Build("{0},{1}",v.Local.sLine,v.Local.fHold,v.Local.sLine)	
+		'Write Phase Total
+		F.Intrinsic.File.WriteLine(V.Global.iHndl,v.Local.sLine)
+		
+		'4/Write Phase Summary Header under Phase Total
+		f.Intrinsic.String.Build(",,Phase {0} Margin,Budg Gr. Marg.,Budg Gr. Marg. %,Act Gr. Marg.,Act Gr. Marg.%,% Complete(Act$/EAC$),,,,,",v.DataTable.dtDistinctPhases(v.Local.i1).Phase!FieldValTrim,v.Local.sLine)
+		'Prepare % Complete header
+		f.Intrinsic.Control.For(v.Local.i2,0,v.Local.sMonthList.UBound,1)
+			f.Intrinsic.String.Build("{0},% Complete",v.Local.sLine,v.Local.sLine)
+		f.Intrinsic.Control.Next(v.Local.i2)
+		'Write % Complete header
+		F.Intrinsic.File.WriteLine(V.Global.iHndl,v.Local.sLine)		
+	
+		'5/Write Phase Summary values
+		v.Local.sLine.Set(",")
+		f.Intrinsic.String.Split(v.Local.sForPhaseSummaryCalc,",",v.Local.sForPhaseSummaryCalc)
+		'Budg Gross Margin = Revenue(4) - Budg Dollars(3)
+		v.Local.sRevenueWholePhase.Set(v.Local.sForPhaseSummaryCalc(4))
+		f.Intrinsic.Math.Sub(v.Local.sForPhaseSummaryCalc(4),v.Local.sForPhaseSummaryCalc(3),v.Local.fBudg_GM)
+		f.Intrinsic.String.Build("{0},{1}",v.Local.sLine,v.Local.fBudg_GM,v.Local.sLine)
+		'Budg Gross Margin Percent = Budg Gross Margin / Revenue(4) * 100
+		v.Local.fHold.Set(v.Local.sForPhaseSummaryCalc(4))
+		f.Intrinsic.Control.If(v.Local.fHold,<>,0)
+			f.Intrinsic.Math.Div(v.Local.fBudg_GM,v.Local.fHold,v.Local.fHold)
+			f.Intrinsic.Math.Mult(v.Local.fHold,100,v.Local.fHold)
+			f.Intrinsic.String.Format(v.Local.fHold,"#0.00",v.Local.sHold)
+			f.Intrinsic.String.Build("{0},{1}",v.Local.sLine,v.Local.sHold,v.Local.sLine)
+		f.Intrinsic.Control.Else
+			f.Intrinsic.String.Build("{0},",v.Local.sLine,v.Local.sLine)
+		f.Intrinsic.Control.EndIf
+		'Act Gross Margin = Revenue(4) - EAC Total Dollars
+		f.Intrinsic.Math.Sub(v.Local.sForPhaseSummaryCalc(4),v.Local.fTotalEAC_Dollars_For_WholePhase,v.Local.fAct_GM)
+		f.Intrinsic.String.Build("{0},{1}",v.Local.sLine,v.Local.fAct_GM,v.Local.sLine)
+		'Act Gross Margin Percent = Act Gross Margin / Revenue(4) * 100
+		v.Local.fHold.Set(v.Local.sForPhaseSummaryCalc(4))
+		f.Intrinsic.Control.If(v.Local.fHold,<>,0)
+			f.Intrinsic.Math.Div(v.Local.fAct_GM,v.Local.fHold,v.Local.fHold)
+			f.Intrinsic.Math.Mult(v.Local.fHold,100,v.Local.fHold)
+			f.Intrinsic.String.Format(v.Local.fHold,"#0.00",v.Local.sHold)
+			f.Intrinsic.String.Build("{0},{1}",v.Local.sLine,v.Local.sHold,v.Local.sLine)
+		f.Intrinsic.Control.Else
+			f.Intrinsic.String.Build("{0},",v.Local.sLine,v.Local.sLine)
+		f.Intrinsic.Control.EndIf
+		'Percent complete for the whole Phase = Act_Dollars / EAC_Dollars * 100
+		f.Intrinsic.Control.If(v.Local.fTotalEAC_Dollars_For_WholePhase,<>,0)
+			f.Intrinsic.Math.Div(v.Local.fTotalAct_Dollars_For_WholePhase,v.Local.fTotalEAC_Dollars_For_WholePhase,v.Local.fHold)
+			f.Intrinsic.Math.Mult(v.Local.fHold,100,v.Local.fHold)
+			f.Intrinsic.String.Format(v.Local.fHold,"#0.00",v.Local.sPctCompleteWholePhase)
+		f.Intrinsic.Control.Else
+			v.Local.sPctCompleteWholePhase.Set("0.00")	
+		f.Intrinsic.Control.EndIf
+		f.Intrinsic.String.Build("{0},{1},,,,,",v.Local.sLine,v.Local.sPctCompleteWholePhase,v.Local.sLine)	
+		
+		'*************save v.Local.sPctCompleteWholePhase to DB for Project, Phase, Current Year, Current Month key, in order to be pulled when running the report at the end of next month**********************
+		f.Intrinsic.String.Build("Select * from GCG_3855_PhasePct where Project = '{0}' and Phase = '{1}' and ETC_Year = {2} and ETC_Month = {3}",v.Args.myProject,v.DataTable.dtDistinctPhases(v.Local.i1).Phase!FieldValTrim,v.Global.iReportYear,v.Global.iReportMonth,v.Local.sSQL)
+		f.ODBC.Connection!conx.ExecuteAndReturn(v.Local.sSQL,v.Local.sRet)
+		f.Intrinsic.Control.If(v.Local.sRet,<>,"")
+			f.Intrinsic.String.Build("Update GCG_3855_PhasePct set PhasePctComp = {4} where Project = '{0}' and Phase = '{1}' and ETC_Year = {2} and ETC_Month = {3}",v.Args.myProject,v.DataTable.dtDistinctPhases(v.Local.i1).Phase!FieldValTrim,v.Global.iReportYear,v.Global.iReportMonth,v.Local.sPctCompleteWholePhase,v.Local.sSQL)
+		f.Intrinsic.Control.Else
+			f.Intrinsic.String.Build("Insert into GCG_3855_PhasePct (Project,Phase,ETC_Year,ETC_Month,PhasePctComp) values ('{0}','{1}',{2},{3},{4})",v.Args.myProject,v.DataTable.dtDistinctPhases(v.Local.i1).Phase!FieldValTrim,v.Global.iReportYear,v.Global.iReportMonth,v.Local.sPctCompleteWholePhase,v.Local.sSQL)	
+		f.Intrinsic.Control.EndIf
+		f.ODBC.Connection!conx.Execute(v.Local.sSQL)		
+		'*******************************************************************************************************************************************************************************************************
+		
+		'Get Previous Month percent completed '***************************************************************************************************************************************************************
+		f.Intrinsic.Date.DateAdd("M",-1,v.Global.dReportDate,v.Local.dPreviousMonth)
+		f.Intrinsic.Date.Year(v.Local.dPreviousMonth,v.Local.iPreviousYear)
+		f.Intrinsic.Date.Month(v.Local.dPreviousMonth,v.Local.iPreviousMonth)
+		f.Intrinsic.String.Build("Select PhasePctComp from GCG_3855_PhasePct where Project = '{0}' and Phase = '{1}' and ETC_Year = {2} and ETC_Month = {3}",v.Args.myProject,v.DataTable.dtDistinctPhases(v.Local.i1).Phase!FieldValTrim,v.Local.iPreviousYear,v.Local.iPreviousMonth,v.Local.sSQL)
+		f.ODBC.Connection!conx.ExecuteAndReturn(v.Local.sSQL,v.Local.sRet)
+		v.Local.fPreviousPctComplete.Set(v.Local.sRet)
+		f.Intrinsic.String.Format(v.Local.fPreviousPctComplete,"0.00",v.Local.sPreviousPctComplete)
+		f.Intrinsic.Math.Mult(v.Local.sPreviousPctComplete,v.Local.sRevenueWholePhase,v.Local.sPreviousMonthRR)
+		f.Intrinsic.Math.Div(v.Local.sPreviousMonthRR,100,v.Local.sPreviousMonthRR)	
+		f.Intrinsic.String.Format(v.Local.sPreviousMonthRR,"#########",v.Local.sPreviousMonthRR)
+		'*******************************************************************************************************************************************************************************************************
+
+		'Percent Complete values
+		'Check EAC Dollars <> 0		
+		v.Local.fEAC_Dollars.Set(v.Local.fTotalEAC_Dollars_For_WholePhase)
+		f.Intrinsic.Control.If(v.Local.fEAC_Dollars,<>,0)	
+			'When move from left to right (example: 2019_03,2019_04,....) the Cumulated_EAC will be Act_Dollars + ETC(of 2019_03) + ETC(of 2019_04) + ....
+			'Act_Dollars: v.Local.sForPhaseSummaryCalc(6)	
+			v.Local.fCulmulated_EAC.Set(v.Local.fTotalAct_Dollars_For_WholePhase)
+			v.Local.iHold.Set(12)
+			v.Local.sFollowingRevenueRecogMTD.Set("")
+			v.Local.sRevenueRecogITD.Set("")
+			f.Intrinsic.Control.For(v.Local.i2,0,v.Local.sMonthList.UBound,1)
+				f.Intrinsic.Math.Add(v.Local.fCulmulated_EAC,v.Local.sForPhaseSummaryCalc(v.Local.iHold),v.Local.fCulmulated_EAC)
+				f.Intrinsic.Math.Div(v.Local.fCulmulated_EAC,v.Local.fEAC_Dollars,v.Local.fHold)
+				f.Intrinsic.Math.Mult(v.Local.fHold,100,v.Local.fHold)
+				f.Intrinsic.String.Format(v.Local.fHold,"#0.00",v.Local.sHold)
+				f.Intrinsic.String.Build("{0},{1}",v.Local.sLine,v.Local.sHold,v.Local.sLine)
+				
+				'Take advantage of this loop - the v.local.fHold is the pct completed - to build Rev Recog ITD for later user
+				f.Intrinsic.Math.Mult(v.Local.sHold,v.Local.sRevenueWholePhase,v.Local.sRevenueRecogITDMonth)
+				f.Intrinsic.Math.Div(v.Local.sRevenueRecogITDMonth,100,v.Local.sRevenueRecogITDMonth)
+				f.Intrinsic.String.Format(v.Local.sRevenueRecogITDMonth,"############",v.Local.sRevenueRecogITDMonth)				
+				f.Intrinsic.Control.If(v.Local.i2,=,0)
+					v.Local.sRevenueRecogITD.Set(v.Local.sRevenueRecogITDMonth)
+					v.Local.sNextMonthRevenueRecogITD.Set(v.Local.sRevenueRecogITDMonth)
+				f.Intrinsic.Control.Else
+					f.Intrinsic.String.Build("{0},{1}",v.Local.sRevenueRecogITD,v.Local.sRevenueRecogITDMonth,v.Local.sRevenueRecogITD)	
+					f.Intrinsic.Math.Sub(v.Local.sRevenueRecogITDMonth,v.Local.sPrevHold,v.Local.sRevenueRecogMTD)
+					f.Intrinsic.String.Build("{0},{1}",v.Local.sFollowingRevenueRecogMTD,v.Local.sRevenueRecogMTD,v.Local.sFollowingRevenueRecogMTD)	
+				f.Intrinsic.Control.EndIf
+				v.Local.sPrevHold.Set(v.Local.sRevenueRecogITDMonth)
+				F.Intrinsic.Math.Add(v.Local.iHold,1,v.Local.iHold)
+			f.Intrinsic.Control.Next(v.Local.i2)		
+		f.Intrinsic.Control.EndIf
+		f.Intrinsic.String.build(",{0}",v.Local.sLine,v.Local.sLine)
+		'Write Complete values
+		F.Intrinsic.File.WriteLine(V.Global.iHndl,v.Local.sLine)	
+		F.Intrinsic.File.WriteLine(V.Global.iHndl,"")
+		
+		'6/Write Revenue Recognition = sPctCompleteWholePhase * Revenue of Phase
+		f.Intrinsic.Math.Mult(v.Local.sPctCompleteWholePhase,v.Local.sRevenueWholePhase,v.Local.sRevenueRecognition)
+		f.Intrinsic.Math.Div(v.Local.sRevenueRecognition,100,v.Local.sRevenueRecognition)
+		f.Intrinsic.String.Format(v.Local.sRevenueRecognition,"############",v.Local.sRevenueRecognition)
+		f.Intrinsic.String.Build(",,,,,Revenue Recognition,{0},,,,,Revenue Recog ITD,{0},{1}",v.Local.sRevenueRecognition,v.Local.sRevenueRecogITD,v.Local.sLine)
+		F.Intrinsic.File.WriteLine(V.Global.iHndl,v.Local.sLine)	
+		'Calculate first & second Revenue Recognition MTD
+		f.Intrinsic.Math.Sub(v.Local.sRevenueRecognition,v.Local.sPreviousMonthRR,v.Local.sFirstRevenueRecogMTD)
+		f.Intrinsic.Math.Sub(v.Local.sNextMonthRevenueRecogITD,v.Local.sRevenueRecognition,v.Local.sSecondRevenueRecogMTD)
+		
+		'7/Write Previous Month RR
+		f.Intrinsic.String.Build(",,,,,Previous Month RR,{0},,,,,Revenue Recog MTD,{1},{2}{3}",v.Local.sPreviousMonthRR,v.Local.sFirstRevenueRecogMTD,v.Local.sSecondRevenueRecogMTD,v.Local.sFollowingRevenueRecogMTD,v.Local.sLine)			
+		F.Intrinsic.File.WriteLine(V.Global.iHndl,v.Local.sLine)
+		
+		F.Intrinsic.File.WriteLine(V.Global.iHndl,"")
+		
+	f.Intrinsic.Control.Next(v.Local.i1)	
+	
+	f.Data.DataTable.Close("dtDistinctPhases")
+	
+F.Intrinsic.Control.Catch
+	F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)	
+F.Intrinsic.Control.EndTry
+Program.Sub.Write_Phases.End
+
+Program.Sub.Write_Project_Summary_Footer.Start
+'Write Project Total:
+'1/Write Double Dashed Line
+'2/Write Project Total
+'3/Write Project Summary Header
+'4/Write Project Summary values
+
+F.Intrinsic.Control.Try
+	v.Local..BulkDeclareString(sError,sSQL,sRet,sHold,sLine,sActRateLine,sMonthList,sColumnsCompute,sColumnsCompute2,sForProjectSummaryCalc,sDoubleDashedLine)
+	v.Local..BulkDeclareLong(i1,iHold)
+	v.Local..BulkDeclareFloat(fHold,fCulmulated_EAC,fBudg_GM,fAct_GM,fEAC_Dollars)	
+
+	v.Local.sPctCompleteWholeProject.Declare
+	v.Local.sRevenueWholeProject.Declare
+	v.Local.sRevenueRecognitionProject.Declare
+	v.Local.sRevenueRecogITDProject.Declare
+	v.Local.sRevenueRecogITDMonthProject.Declare
+	v.Local.sPreviousMonthRR.Declare
+	
+	v.Local.sPreviousPctComplete.Declare
+	v.Local.sRevenueRecogITDMonth.Declare
+	v.Local.sFollowingRevenueRecogMTD.Declare
+	v.Local.sPreviousMonthRRMonth.Declare	
+	
+	v.Local.sRevenueRecogMTD.Declare
+	v.Local.sPrevHold.Declare
+	v.Local.sFirstRevenueRecogMTD.Declare
+	v.Local.sSecondRevenueRecogMTD.Declare
+	v.Local.sNextMonthRevenueRecogITD.Declare	
+	v.Local.sF_GroupFilter.Declare	
+
+	v.Local.iPreviousMonth.Declare
+	v.Local.iPreviousYear.Declare
+	v.Local.iInner.Declare	
+	
+	v.Local.fPreviousPctComplete.Declare	
+	v.Local.fTotalActHoursProject.Declare
+	v.Local.fTotalActLaborProject.Declare
+	v.Local.fActHoursGroup.Declare
+	v.Local.fTotalEAC_Dollars_For_WholeProject.Declare
+	v.Local.fTotalAct_Dollars_For_WholeProject.Declare
+	
+	v.Local.dPreviousMonth.Declare
+	
+	f.Intrinsic.String.Split(v.Global.sColumnsCompute,",",v.Local.sColumnsCompute)
+	f.Intrinsic.String.Split(v.Global.sColumnsCompute2,",",v.Local.sColumnsCompute2)
+	f.Intrinsic.String.Split(v.Args.sMonthList,",",v.Local.sMonthList)	
+	
+	'1/Write Double Dashed Line
+	f.Intrinsic.String.Replace(v.Global.sStardardDashedLine,v.Global.sSingleDashed,v.Global.sDoubleDashed,v.Local.sDoubleDashedLine)
+	f.Intrinsic.String.Replace(v.Local.sDoubleDashedLine,",,","",v.Local.sDoubleDashedLine)
+	f.Intrinsic.String.Build(",Project Summary,{0}",v.Local.sDoubleDashedLine,v.Local.sDoubleDashedLine)
+	F.Intrinsic.File.WriteLine(V.Global.iHndl,"")
+	F.Intrinsic.File.WriteLine(V.Global.iHndl,v.Local.sDoubleDashedLine)
+	
+	'Write the title (header) for the project summary
+	f.Intrinsic.String.Build(",{0},,,Total ETC:,HOURS,LABOR $,MATERIAL $,OUTSIDE $",v.Global.sTitle,v.Local.sLine)		
+	F.Intrinsic.File.WriteLine(V.Global.iHndl,v.Local.sLine)
+	
+	'1bis/ Write the Project Group Aggreation
+	'Get the Group list of the project
+	f.Data.DataView.Create("dtProject","dtProjectGroupDV")
+	F.Data.DataView.ToDataTableDistinct("dtProject","dtProjectGroupDV","dtDistinctGroup","F_Group",True)
+	'Loop by each group	
+	f.Intrinsic.Control.For(v.Local.i1,0,v.DataTable.dtDistinctGroup.RowCount--,1)
+		'Write Lines (each line is are Group)
+		f.Intrinsic.String.Build("F_Group = '{0}'",v.DataTable.dtDistinctGroup(v.Local.i1).F_Group!FieldValString,v.Local.sF_GroupFilter)
+		f.Intrinsic.String.Build(",{0},",v.DataTable.dtDistinctGroup(v.Local.i1).F_Group!FieldValString,v.Local.sline)
+		f.Intrinsic.Control.For(v.Local.iInner,2,v.Local.sColumnsCompute2.UBound,1)
+			f.Intrinsic.String.Build("Sum([{0}])",v.Local.sColumnsCompute2(v.Local.iInner),v.Local.sHold)
+			f.Data.DataTable.Compute("dtProject",v.Local.sHold,v.Local.sF_GroupFilter,v.Local.fHold)
+			f.Intrinsic.String.Build("{0},{1}",v.Local.sLine,v.Local.fHold,v.Local.sLine)
+		f.Intrinsic.Control.Next(v.Local.iInner)
+				
+		'Calculate HOURS,LABOR $,MATERIAL $,OUTSIDE $
+		f.Data.DataTable.Compute("dtProject","Sum([TotalEstHours])",v.Local.sF_GroupFilter,v.Local.fHold)
+		f.Intrinsic.String.Build("{0},,,,{1}",v.Local.sLine,v.Local.fHold,v.Local.sLine)
+		f.Data.DataTable.Compute("dtProject","Sum([TotalEstLabor])",v.Local.sF_GroupFilter,v.Local.fHold)
+		f.Intrinsic.String.Build("{0},{1}",v.Local.sLine,v.Local.fHold,v.Local.sLine)
+		f.Data.DataTable.Compute("dtProject","Sum([TotalEstMaterial])",v.Local.sF_GroupFilter,v.Local.fHold)
+		f.Intrinsic.String.Build("{0},{1}",v.Local.sLine,v.Local.fHold,v.Local.sLine)
+		f.Data.DataTable.Compute("dtProject","Sum([TotalEstOutside])",v.Local.sF_GroupFilter,v.Local.fHold)
+		f.Intrinsic.String.Build("{0},{1}",v.Local.sLine,v.Local.fHold,v.Local.sLine)	
+		
+		'Calculate Act Rate
+		f.Intrinsic.String.Split(v.Local.sLine,",",v.Local.sLine)
+		v.Local.fActHoursGroup.Set(v.Local.sLine(6))
+		f.Intrinsic.Control.If(v.Local.fActHoursGroup,<>,0)
+			f.Data.DataTable.Compute("dtProject","Sum([Act_Labr])",v.Local.sF_GroupFilter,v.Local.fHold)
+			f.Intrinsic.Math.Div(v.Local.fHold,v.Local.fActHoursGroup,v.Local.fHold)
+			f.Intrinsic.String.Format(v.Local.fhold,"0.00",v.Local.sLine(8))
+		f.Intrinsic.Control.Else
+			v.Local.sLine(8).Set("")		
+		f.Intrinsic.Control.EndIf
+		f.Intrinsic.String.Join(v.Local.sLine,",",v.Local.sLine)
+		F.Intrinsic.File.WriteLine(V.Global.iHndl,v.Local.sLine)		
+	f.Intrinsic.Control.Next(v.Local.i1)	
+	
+	f.Data.DataTable.Close("dtDistinctGroup")
+	f.Data.DataView.Close("dtProject","dtProjectGroupDV")
+	F.Intrinsic.File.WriteLine(V.Global.iHndl,v.Local.sDoubleDashedLine)
+	
+	'2/Write Project Total	
+	f.Intrinsic.String.Build(",Project {0} Total",v.Args.myProject,v.Local.sLine)
+	f.Intrinsic.Control.For(v.Local.i1,2,v.Local.sColumnsCompute.UBound,1)	
+		f.Intrinsic.String.Build("Sum([{0}])",v.Local.sColumnsCompute(v.Local.i1),v.Local.sHold)
+		f.Data.DataTable.Compute("dtProject",v.Local.sHold,"",v.Local.fHold)
+		f.Intrinsic.String.Build("{0},{1}",v.Local.sLine,v.Local.fHold,v.Local.sLine)		
+		f.Intrinsic.Control.If(v.Local.sColumnsCompute(v.Local.i1),=,"EAC_Dollars")		
+			v.Local.fTotalEAC_Dollars_For_WholeProject.Set(v.Local.fHold)
+		f.Intrinsic.Control.EndIf
+		f.Intrinsic.Control.If(v.Local.sColumnsCompute(v.Local.i1),=,"Act_Dollars")
+			v.Local.fTotalAct_Dollars_For_WholeProject.Set(v.Local.fHold)
+		f.Intrinsic.Control.EndIf	
+	f.Intrinsic.Control.Next(v.Local.i1)
+	'Calculate the Act_Rate = sum(Act_Labr) / sum(Act_Hours)
+	f.Intrinsic.String.Split(v.Local.sLine,",",v.Local.sLine)
+	v.Local.fTotalActHoursProject.Set(v.Local.sLine(5))
+
+	f.Intrinsic.Control.If(v.Local.fTotalActHoursProject,<>,0)
+		f.Data.DataTable.Compute("dtProject","Sum(ACT_LABR)","",v.Local.fTotalActLaborProject)
+		f.Intrinsic.Math.Div(v.Local.fTotalActLaborProject,v.Local.fTotalActHoursProject,v.Local.sRet)
+		f.Intrinsic.String.Format(v.Local.sRet,"#0.00",v.Local.sLine(7))
+	f.Intrinsic.Control.Else
+		V.Local.sLine(7).Set("")
+	f.Intrinsic.Control.EndIf
+	f.Intrinsic.String.Join(v.Local.sLine,",",v.Local.sLine)
+	v.Local.sForProjectSummaryCalc.Set(v.Local.sLine)
+	f.Intrinsic.String.Build(",{0},Total Project {1}",v.Local.sLine,v.Args.myProject,v.Local.sLine)
+	'Calculate Total of Phase for HOURS,LABOR $,MATERIAL $,OUTSIDE $
+	f.Data.DataTable.Compute("dtProject","Sum([TotalEstHours])","",v.Local.fHold)
+	f.Intrinsic.String.Build("{0},,,{1}",v.Local.sLine,v.Local.fHold,v.Local.sLine)
+	f.Data.DataTable.Compute("dtProject","Sum([TotalEstLabor])","",v.Local.fHold)
+	f.Intrinsic.String.Build("{0},{1}",v.Local.sLine,v.Local.fHold,v.Local.sLine)
+	f.Data.DataTable.Compute("dtProject","Sum([TotalEstMaterial])","",v.Local.fHold)
+	f.Intrinsic.String.Build("{0},{1}",v.Local.sLine,v.Local.fHold,v.Local.sLine)
+	f.Data.DataTable.Compute("dtProject","Sum([TotalEstOutside])","",v.Local.fHold)
+	f.Intrinsic.String.Build("{0},{1}",v.Local.sLine,v.Local.fHold,v.Local.sLine)
+	F.Intrinsic.File.WriteLine(V.Global.iHndl,v.Local.sLine)
+	
+	'3/Write Project Summary Header
+	f.Intrinsic.String.Build(",,Project {0} Margin,Budg Gr. Marg.,Budg Gr. Marg. %,Act Gr. Marg.,Act Gr. Marg.%,% Complete(Act$/EAC$),,,,,",v.Args.myProject,v.Local.sLine)
+	f.Intrinsic.Control.For(v.Local.i1,0,v.Local.sMonthList.UBound,1)
+		f.Intrinsic.String.Build("{0},% Complete",v.Local.sLine,v.Local.sLine)
+	f.Intrinsic.Control.Next(v.Local.i1)
+	F.Intrinsic.File.WriteLine(V.Global.iHndl,v.Local.sLine)
+	
+	'4/Write Project Summary values
+	v.Local.sLine.Set(",")
+	f.Intrinsic.String.Split(v.Local.sForProjectSummaryCalc,",",v.Local.sForProjectSummaryCalc)
+	'Budg Gross Margin = Revenue(4) - Budg Dollars(3)
+	f.Intrinsic.Math.Sub(v.Local.sForProjectSummaryCalc(4),v.Local.sForProjectSummaryCalc(3),v.Local.fBudg_GM)
+	f.Intrinsic.String.Build("{0},{1}",v.Local.sLine,v.Local.fBudg_GM,v.Local.sLine)
+	'Budg Gross Margin Percent = Budg Gross Margin / Revenue(4) * 100
+	v.Local.fHold.Set(v.Local.sForProjectSummaryCalc(4))
+	f.Intrinsic.Control.If(v.Local.fHold,<>,0)
+		f.Intrinsic.Math.Div(v.Local.fBudg_GM,v.Local.fHold,v.Local.fHold)
+		f.Intrinsic.Math.Mult(v.Local.fHold,100,v.Local.fHold)
+		f.Intrinsic.String.Format(v.Local.fHold,"#0.00",v.Local.sHold)
+		f.Intrinsic.String.Build("{0},{1}",v.Local.sLine,v.Local.sHold,v.Local.sLine)
+	f.Intrinsic.Control.Else
+		f.Intrinsic.String.Build("{0},",v.Local.sLine,v.Local.sLine)
+	f.Intrinsic.Control.EndIf
+	'Act Gross Margin = Revenue(4) - Total EAC Dollars
+	v.Local.sRevenueWholeProject.Set(v.Local.sForProjectSummaryCalc(4))
+	f.Intrinsic.Math.Sub(v.Local.sForProjectSummaryCalc(4),v.Local.fTotalEAC_Dollars_For_WholeProject,v.Local.fAct_GM)
+	f.Intrinsic.String.Build("{0},{1}",v.Local.sLine,v.Local.fAct_GM,v.Local.sLine)
+	'Act Gross Margin Percent = Act Gross Margin / Revenue * 100
+	v.Local.fHold.Set(v.Local.sForProjectSummaryCalc(4))
+	f.Intrinsic.Control.If(v.Local.fHold,<>,0)
+		f.Intrinsic.Math.Div(v.Local.fAct_GM,v.Local.fHold,v.Local.fHold)
+		f.Intrinsic.Math.Mult(v.Local.fHold,100,v.Local.fHold)
+		f.Intrinsic.String.Format(v.Local.fHold,"#0.00",v.Local.sHold)
+		f.Intrinsic.String.Build("{0},{1}",v.Local.sLine,v.Local.sHold,v.Local.sLine)
+	f.Intrinsic.Control.Else
+	f.Intrinsic.String.Build("{0},",v.Local.sLine,v.Local.sLine)
+	f.Intrinsic.Control.EndIf
+
+	'Percent complete for the whole Project = Act_Dollars / EAC_Dollars * 100
+	f.Intrinsic.Control.If(v.Local.fTotalEAC_Dollars_For_WholeProject,<>,0)
+		f.Intrinsic.Math.Div(v.Local.fTotalAct_Dollars_For_WholeProject,v.Local.fTotalEAC_Dollars_For_WholeProject,v.Local.fHold)
+		f.Intrinsic.Math.Mult(v.Local.fHold,100,v.Local.fHold)
+		f.Intrinsic.String.Format(v.Local.fHold,"#0.00",v.Local.sPctCompleteWholeProject)
+	f.Intrinsic.Control.Else
+	v.Local.sPctCompleteWholeProject.Set("0.00")	
+	f.Intrinsic.Control.EndIf
+	f.Intrinsic.String.Build("{0},{1},,,,,",v.Local.sLine,v.Local.sPctCompleteWholeProject,v.Local.sLine)	
+
+	'*************save v.Local.sPctCompleteWholeProject to DB for Project, Phase, Current Year, Current Month key, in order to be pulled when running the report at the end of next month**********************
+	f.Intrinsic.String.Build("Select * from GCG_3855_ProjectPct where Project = '{0}' and ETC_Year = {1} and ETC_Month = {2}",v.Args.myProject,v.Global.iReportYear,v.Global.iReportMonth,v.Local.sSQL)
+	f.ODBC.Connection!conx.ExecuteAndReturn(v.Local.sSQL,v.Local.sRet)
+	f.Intrinsic.Control.If(v.Local.sRet,<>,"")
+		f.Intrinsic.String.Build("Update GCG_3855_ProjectPct set ProjectPctComp = {3} where Project = '{0}' and ETC_Year = {1} and ETC_Month = {2}",v.Args.myProject,v.Global.iReportYear,v.Global.iReportMonth,v.Local.sPctCompleteWholeProject,v.Local.sSQL)
+	f.Intrinsic.Control.Else
+		f.Intrinsic.String.Build("Insert into GCG_3855_ProjectPct (Project,ETC_Year,ETC_Month,ProjectPctComp) values ('{0}',{1},{2},{3})",v.Args.myProject,v.Global.iReportYear,v.Global.iReportMonth,v.Local.sPctCompleteWholeProject,v.Local.sSQL)	
+	f.Intrinsic.Control.EndIf
+	f.ODBC.Connection!conx.Execute(v.Local.sSQL)		
+	'*******************************************************************************************************************************************************************************************************
+	
+	'Get Previous Month percent completed '***************************************************************************************************************************************************************
+	f.Intrinsic.Date.DateAdd("M",-1,v.Global.dReportDate,v.Local.dPreviousMonth)
+	f.Intrinsic.Date.Year(v.Local.dPreviousMonth,v.Local.iPreviousYear)
+	f.Intrinsic.Date.Month(v.Local.dPreviousMonth,v.Local.iPreviousMonth)
+	f.Intrinsic.String.Build("Select ProjectPctComp from GCG_3855_ProjectPct where Project = '{0}' and ETC_Year = {1} and ETC_Month = {2}",v.Args.myProject,v.Local.iPreviousYear,v.Local.iPreviousMonth,v.Local.sSQL)
+	f.ODBC.Connection!conx.ExecuteAndReturn(v.Local.sSQL,v.Local.sRet)
+	v.Local.fPreviousPctComplete.Set(v.Local.sRet)
+	f.Intrinsic.String.Format(v.Local.fPreviousPctComplete,"0.00",v.Local.sPreviousPctComplete)
+	f.Intrinsic.Math.Mult(v.Local.sPreviousPctComplete,v.Local.sRevenueWholeProject,v.Local.sPreviousMonthRR)
+	f.Intrinsic.Math.Div(v.Local.sPreviousMonthRR,100,v.Local.sPreviousMonthRR)	
+	f.Intrinsic.String.Format(v.Local.sPreviousMonthRR,"#########",v.Local.sPreviousMonthRR)
+	'*******************************************************************************************************************************************************************************************************	
+		
+	'Percent Complete values
+	'Check EAC Dollars <> 0
+	f.Intrinsic.Math.Sub(v.Local.sForProjectSummaryCalc.UBound,2,v.Local.iHold)
+	v.Local.fEAC_Dollars.Set(v.Local.sForProjectSummaryCalc(v.Local.iHold))
+	f.Intrinsic.Control.If(v.Local.fEAC_Dollars,<>,0)	
+		'When move from left to right (example: 2019_03,2019_04,....) the Cumulated_EAC will be Act_Dollars + ETC(of 2019_03) + ETC(of 2019_04) + ....
+		'Act_Dollars: v.Local.sForProjectSummaryCalc(6)			
+		v.Local.fCulmulated_EAC.Set(v.Local.sForProjectSummaryCalc(6))
+		v.Local.iHold.Set(12)			
+		f.Intrinsic.Control.For(v.Local.i1,0,v.Local.sMonthList.UBound,1)
+			f.Intrinsic.Math.Add(v.Local.fCulmulated_EAC,v.Local.sForProjectSummaryCalc(v.Local.iHold),v.Local.fCulmulated_EAC)
+			f.Intrinsic.Math.Div(v.Local.fCulmulated_EAC,v.Local.fEAC_Dollars,v.Local.fHold)
+			f.Intrinsic.Math.Mult(v.Local.fHold,100,v.Local.fHold)
+			f.Intrinsic.String.Format(v.Local.fHold,"#0.00",v.Local.sHold)
+			f.Intrinsic.String.Build("{0},{1}",v.Local.sLine,v.Local.sHold,v.Local.sLine)
+		
+			'Take advantage of this loop - the v.local.fHold is the pct completed - to build Rev Recog ITD for later user		
+			f.Intrinsic.Math.Mult(v.Local.sHold,v.Local.sRevenueWholeProject,v.Local.sRevenueRecogITDMonthProject)
+			f.Intrinsic.Math.Div(v.Local.sRevenueRecogITDMonthProject,100,v.Local.sRevenueRecogITDMonthProject)
+			f.Intrinsic.String.Format(v.Local.sRevenueRecogITDMonthProject,"############",v.Local.sRevenueRecogITDMonthProject)
+			f.Intrinsic.Control.If(v.Local.i1,=,0)
+				v.Local.sRevenueRecogITDProject.Set(v.Local.sRevenueRecogITDMonthProject)
+				v.Local.sNextMonthRevenueRecogITD.Set(v.Local.sRevenueRecogITDMonthProject)
+				v.Local.sFollowingRevenueRecogMTD.Set("")
+			f.Intrinsic.Control.Else
+				f.Intrinsic.String.Build("{0},{1}",v.Local.sRevenueRecogITDProject,v.Local.sRevenueRecogITDMonthProject,v.Local.sRevenueRecogITDProject)
+				f.Intrinsic.Math.Sub(v.Local.sRevenueRecogITDMonthProject,v.Local.sPrevHold,v.Local.sRevenueRecogMTD)
+				f.Intrinsic.String.Build("{0},{1}",v.Local.sFollowingRevenueRecogMTD,v.Local.sRevenueRecogMTD,v.Local.sFollowingRevenueRecogMTD)
+			f.Intrinsic.Control.EndIf			
+			v.Local.sPrevHold.Set(v.Local.sRevenueRecogITDMonthProject)
+			f.Intrinsic.Math.Add(v.Local.iHold,1,v.Local.iHold)
+		f.Intrinsic.Control.Next(v.Local.i1)		
+	f.Intrinsic.Control.EndIf
+	f.Intrinsic.String.Build(",{0}",v.Local.sLine,v.Local.sLine)
+	'Write Complete values
+	F.Intrinsic.File.WriteLine(V.Global.iHndl,v.Local.sLine)
+	
+	'6/Write Revenue Recognition = sPctCompleteWholeProject* Revenue of Project
+	f.Intrinsic.Math.Mult(v.Local.sPctCompleteWholeProject,v.Local.sRevenueWholeProject,v.Local.sRevenueRecognitionProject)
+	f.Intrinsic.Math.Div(v.Local.sRevenueRecognitionProject,100,v.Local.sRevenueRecognitionProject)
+	f.Intrinsic.String.Format(v.Local.sRevenueRecognitionProject,"############",v.Local.sRevenueRecognitionProject)
+	f.Intrinsic.String.Build(",,,,,Revenue Recognition,{0},,,,,Revenue Recog ITD,{0},{1}",v.Local.sRevenueRecognitionProject,v.Local.sRevenueRecogITDProject,v.Local.sLine)
+	'*************save v.Local.sRevenueRecognition to DB for Project, Phase, Current Year, Current Month key*********************
+	F.Intrinsic.File.WriteLine(V.Global.iHndl,"")
+	F.Intrinsic.File.WriteLine(V.Global.iHndl,v.Local.sLine)
+	'Calculate first & second Revenue Recognition MTD
+	f.Intrinsic.Math.Sub(v.Local.sRevenueRecognitionProject,v.Local.sPreviousMonthRR,v.Local.sFirstRevenueRecogMTD)
+	f.Intrinsic.Math.Sub(v.Local.sNextMonthRevenueRecogITD,v.Local.sRevenueRecognitionProject,v.Local.sSecondRevenueRecogMTD)
+	
+	'7/Write Previous Month RR
+	f.Intrinsic.String.Build(",,,,,Previous Month RR,{0},,,,,Revenue Recog MTD,{1},{2}{3}",v.Local.sPreviousMonthRR,v.Local.sFirstRevenueRecogMTD,v.Local.sSecondRevenueRecogMTD,v.Local.sFollowingRevenueRecogMTD,v.Local.sLine)			
+	F.Intrinsic.File.WriteLine(V.Global.iHndl,v.Local.sLine)		
+	
+	F.Intrinsic.File.WriteLine(V.Global.iHndl,"")
+	
+	f.Intrinsic.String.Replace(v.Global.sStardardDashedLine,v.Global.sSingleDashed,v.Global.sXXXLine,v.local.sLine)
+	f.Intrinsic.String.Replace(v.Local.sLine,",,","",v.Local.sLine)
+	f.Intrinsic.String.Build("{0}{1},{0},{0}",v.Global.sXXXLine,v.Local.sLine,v.Local.sLine)
+	f.Intrinsic.String.Build("{0}{1}{0}{1}",v.local.sLine,v.Ambient.NewLine,v.Local.sLine)
+	F.Intrinsic.File.WriteLine(V.Global.iHndl,v.Local.sLine)
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.String.Build("Project: {0}{1}{1}Subroutine: {2}{1}Error Occurred {3} with description {4}{1}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)	
+F.Intrinsic.Control.EndTry
+
+Program.Sub.Write_Project_Summary_Footer.End
+
+Program.Sub.Form_UnLoad.Start
+f.Intrinsic.Control.CallSub("Unload")
+Program.Sub.Form_UnLoad.End
+
+Program.Sub.UnLoad.Start
+f.Intrinsic.Control.Try
+	v.Local.sError.Declare
+
+	F.Intrinsic.Control.If(V.ODBC.conx.State,=,1)
+		F.ODBC.Connection!conx.close
+	F.Intrinsic.Control.EndIf
+	
+	f.Intrinsic.Control.End
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.String.Build("Project: {0}{1}Subroutine: {2}{1}Subroutine called from:{6}{1}Error Occurred: {3}{1}Description: {4}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,v.Ambient.SubroutineCalledFrom,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	F.Intrinsic.Control.End	
+F.Intrinsic.Control.EndTry
+Program.Sub.UnLoad.End
+
+Program.Sub.F_ProgressBar_UnLoad.Start
+gui.F_ProgressBar.proBar.Visible(False)
+Program.Sub.F_ProgressBar_UnLoad.End
+
+Program.Sub.cmdIncreaseYear_Click.Start
+v.Local.iHold.Declare
+v.Local.iHold.Set(v.Screen.Form!txtYear.Text)
+f.Intrinsic.Math.Add(v.Local.iHold,1,v.Local.iHold)
+gui.Form.txtYear.Text(v.Local.iHold)
+Program.Sub.cmdIncreaseYear_Click.End
+
+Program.Sub.cmdDecreaseYear_Click.Start
+v.Local.iHold.Declare
+v.Local.iHold.Set(v.Screen.Form!txtYear.Text)
+f.Intrinsic.Math.Sub(v.Local.iHold,1,v.Local.iHold)
+gui.Form.txtYear.Text(v.Local.iHold)
+Program.Sub.cmdDecreaseYear_Click.End
+
+Program.Sub.cmdIncreaseMonth_Click.Start
+v.Local.iHold.Declare
+v.Local.iHold.Set(v.Screen.Form!txtMonth.Text)
+f.Intrinsic.Math.Add(v.Local.iHold,1,v.Local.iHold)
+gui.Form.txtMonth.Text(v.Local.iHold)
+Program.Sub.cmdIncreaseMonth_Click.End
+
+Program.Sub.cmdDecreaseMonth_Click.Start
+v.Local.iHold.Declare
+v.Local.iHold.Set(v.Screen.Form!txtMonth.Text)
+f.Intrinsic.Math.sub(v.Local.iHold,1,v.Local.iHold)
+gui.Form.txtMonth.Text(v.Local.iHold)
+Program.Sub.cmdDecreaseMonth_Click.End
+
+Program.Sub.Finalize_ETC_NextMonth.Start
+f.Intrinsic.Control.Try
+	v.Local.sError.Declare
+	v.Local.sRet.Declare
+	v.Local.sSQL.Declare
+	v.Local.sHold.Declare
+
+	v.Local.smMonth.Declare
+	v.Local.sYYYY.Declare
+	v.Local.sMM.Declare
+	v.Local.sDD.Declare
+	v.Local.sHH.Declare
+	v.Local.sNN.Declare
+	v.Local.sSS.Declare
+	
+	v.Local.iHold.Declare	
+	v.Local.iCnt.Declare
+	v.Local.iCurrentDate.Declare	
+	v.Local.iNextMonthDate.Declare
+	v.Local.iNextMonthYear.Declare	
+	v.Local.iNextMonthMonth.Declare		
+	v.Local.iDateTime.Declare
+	
+	v.Local.dDateHold.Declare
+	v.Local.dDateTimeProcess.Declare	
+	v.Local.dNextMonthDate.Declare	
+	v.Local.dFDoMDate.Declare
+	
+	v.local.fETC_Hour.Declare
+	v.Local.fETC_DollarPerHour.Declare
+	v.Local.fETC_Labor.Declare
+	v.Local.fETC_Material.Declare
+	v.Local.fETC_Outside.Declare
+	v.Local.fETC_Value.Declare
+	v.Local.sFDoMDate.Declare	
+	
+	'For testing purpose, switch dates
+	v.Local.dDateTimeProcess.Set(v.Ambient.now)
+
+	'Format date time
+	f.Intrinsic.String.Left(v.Local.dDateTimeProcess.FormatYYYYMMDDHhNnSs,4,v.Local.sYYYY)
+	f.Intrinsic.String.Mid(v.Local.dDateTimeProcess.FormatYYYYMMDDHhNnSs,5,2,v.Local.sMM)
+	f.Intrinsic.String.Mid(v.Local.dDateTimeProcess.FormatYYYYMMDDHhNnSs,7,2,v.Local.sDD)
+	f.Intrinsic.String.Mid(v.Local.dDateTimeProcess.FormatYYYYMMDDHhNnSs,9,2,v.Local.sHH)
+	f.Intrinsic.String.Mid(v.Local.dDateTimeProcess.FormatYYYYMMDDHhNnSs,11,2,v.Local.sNN)
+	f.Intrinsic.String.Right(v.Local.dDateTimeProcess.FormatYYYYMMDDHhNnSs,2,v.Local.sSS)	
+	v.Local.iDateTime.Set(v.Local.dDateTimeProcess.FormatYYYYMMDD)
+
+	'Next month
+	f.Intrinsic.Date.DateAdd("M",1,v.Global.dReportDate,v.Local.dNextMonthDate)	
+	f.Intrinsic.String.Format(v.Local.dNextMonthDate,"YYYYMMDD",v.Local.iNextMonthDate)
+	f.Intrinsic.Date.Year(v.Local.dNextMonthDate,v.Local.iNextMonthYear)
+	f.Intrinsic.Date.Month(v.Local.dNextMonthDate,v.Local.iNextMonthMonth)		
+	
+	'Getting Project Estimates values of the next month
+	f.Intrinsic.Control.If(v.DataTable.dtEst.Exists)
+		f.Data.DataTable.Close("DTEST")
+	f.Intrinsic.Control.EndIf
+	f.Intrinsic.String.Build("Select PROJECT,PHASE,ETC_Group,ETC_Year,ETC_Month,ETC_Hour,ETC_DollarPerHour,ETC_Labor,ETC_Material,ETC_Outside,ETC_Revenue,ETC_Value,Year_Month,FDoMDate,FDoMDate2 from GCG_3855_ETC where FDoMDate2 = {0} and Project = '{1}' order by Project,Phase,ETC_Group",v.Local.dNextMonthDate.FormatYYYYMMDD,v.Args.sProject,v.Local.sSQL)
+	f.Data.DataTable.CreateFromSQL("dtEst","conx",v.Local.sSQL,True)
+
+	f.Intrinsic.String.LPad(v.Local.iNextMonthMonth,"0",2,v.Local.sHold)
+	f.Intrinsic.String.Build("m{0}_{1}",v.Local.iNextMonthYear,v.Local.sHold,v.Local.smMonth)	
+	
+	f.Intrinsic.Control.For(v.Local.iCnt,0,v.DataTable.dtEst.RowCount--,1)			
+		v.local.fETC_Hour.set(v.DataTable.dtEst(v.Local.iCnt).ETC_Hour!FieldValString)
+		v.Local.fETC_DollarPerHour.set(v.DataTable.dtEst(v.Local.iCnt).ETC_DollarPerHour!FieldValString)
+		v.Local.fETC_Labor.set(v.DataTable.dtEst(v.Local.iCnt).ETC_Labor!FieldValString)
+		v.Local.fETC_Material.set(v.DataTable.dtEst(v.Local.iCnt).ETC_Material!FieldValString)
+		v.Local.fETC_Outside.set(v.DataTable.dtEst(v.Local.iCnt).ETC_Outside!FieldValString)
+		v.Local.fETC_Value.set(v.DataTable.dtEst(v.Local.iCnt).ETC_Value!FieldValString)	
+		
+		f.Intrinsic.Date.DateSerial(v.DataTable.dtEst(v.Local.iCnt).ETC_Year!FieldValString,v.DataTable.dtEst(v.Local.iCnt).ETC_Month!FieldValString,1,v.Local.dFDoMDate)
+		
+		f.Intrinsic.String.Build("Select * from GCG_3855_EtcAct where Project = '{0}' and Phase = '{1}' and ETC_Group = '{2}' and ETC_Year = {3} and ETC_Month = {4}",v.DataTable.dtEst(v.Local.iCnt).Project!FieldValTrim,v.DataTable.dtEst(v.Local.iCnt).Phase!FieldValTrim,v.DataTable.dtEst(v.Local.iCnt).ETC_Group!FieldValTrim,v.DataTable.dtEst(v.Local.iCnt).ETC_Year!FieldValString,v.DataTable.dtEst(v.Local.iCnt).ETC_Month!FieldValString,v.Local.sSQL)	
+		f.ODBC.Connection!conx.ExecuteAndReturn(v.Local.sSQL,v.Local.sRet)
+		'Select if there is record, update, otherwise, update
+		f.Intrinsic.Control.If(v.Local.sRet,<>,"")		
+			f.Intrinsic.String.Build("Update GCG_3855_EtcAct set ETC_Hour = {0}, ETC_DollarPerHour = {1}, ETC_Labor = {2}, ETC_Material = {3}, ETC_Outside = {4}, ETC_Value = {5}, Year_Month = '{6}',ETCFinalizeTime = DateTimeFromParts({12},{13},{14},{15},{16},{17},0), ETCFinalizeDate = {18}, ETCFinalizeBy = '{19}' where Project = '{7}' and Phase = '{8}' and ETC_Group = '{9}' and ETC_Year = {10} and ETC_Month = {11}",v.Local.fETC_Hour,v.Local.fETC_DollarPerHour,v.Local.fETC_Labor,v.Local.fETC_Material,v.Local.fETC_Outside,v.Local.fETC_Value,v.DataTable.dtEst(v.Local.iCnt).Year_Month!FieldValString,v.DataTable.dtEst(v.Local.iCnt).Project!FieldValTrim,v.DataTable.dtEst(v.Local.iCnt).Phase!FieldValTrim,v.DataTable.dtEst(v.Local.iCnt).ETC_Group!FieldValTrim,v.DataTable.dtEst(v.Local.iCnt).ETC_Year!FieldValString,v.DataTable.dtEst(v.Local.iCnt).ETC_Month!FieldValString,v.Local.sYYYY,v.Local.sMM,v.Local.sDD,v.Local.sHH,v.Local.sNN,v.Local.sSS,v.Local.iDateTime,v.Caller.User,v.Local.sSQL)
+		f.Intrinsic.Control.Else		
+			f.Intrinsic.String.Build("Insert into GCG_3855_EtcAct (ETC_Hour,ETC_DollarPerHour,ETC_Labor,ETC_Material,ETC_Outside,ETC_Value,Year_Month,Project,Phase,ETC_Group,ETC_Year,ETC_Month,FDoMDate,FDoMDate2,ETCFinalizeTime,ETCFinalizeDate,ETCFinalizeBy) values ({0},{1},{2},{3},{4},{5},'{6}','{7}','{8}','{9}',{10},{11},'{12}',{13},DateTimeFromParts({14},{15},{16},{17},{18},{19},0),{20},'{21}')",v.Local.fETC_Hour,v.Local.fETC_DollarPerHour,v.Local.fETC_Labor,v.Local.fETC_Material,v.Local.fETC_Outside,v.Local.fETC_Value,v.Local.smMonth,v.DataTable.dtEst(v.Local.iCnt).Project!FieldValTrim,v.DataTable.dtEst(v.Local.iCnt).Phase!FieldValTrim,v.DataTable.dtEst(v.Local.iCnt).ETC_Group!FieldValTrim,v.DataTable.dtEst(v.Local.iCnt).ETC_Year!FieldValString,v.DataTable.dtEst(v.Local.iCnt).ETC_Month!FieldValString,v.Local.dFDoMDate.PervasiveDate,v.Local.dFDoMDate.FormatYYYYMMDD,v.Local.sYYYY,v.Local.sMM,v.Local.sDD,v.Local.sHH,v.Local.sNN,v.Local.sSS,v.Local.iDateTime,v.Caller.User,v.Local.sSQL)	
+		f.Intrinsic.Control.EndIf
+		f.ODBC.Connection!conx.Execute(v.Local.sSQL)
+		
+		f.Intrinsic.String.Build("Update GCG_3855_ETC set ETCFinalizeDate = {5} where Project = '{0}' and Phase = '{1}' and ETC_Group = '{2}' and ETC_Year = {3} and ETC_Month = {4}",v.DataTable.dtEst(v.Local.iCnt).Project!FieldValTrim,v.DataTable.dtEst(v.Local.iCnt).Phase!FieldValTrim,v.DataTable.dtEst(v.Local.iCnt).ETC_Group!FieldValTrim,v.DataTable.dtEst(v.Local.iCnt).ETC_Year!FieldValString,v.DataTable.dtEst(v.Local.iCnt).ETC_Month!FieldValString,v.Local.iDateTime,v.Local.sSQL)
+		f.ODBC.Connection!conx.Execute(v.Local.sSQL)
+		
+	f.Intrinsic.Control.Next(v.Local.iCnt)	
+
+F.Intrinsic.Control.Catch
+	F.Intrinsic.String.Build("Project: {0}{1}Subroutine: {2}{1}Subroutine called from:{6}{1}Error Occurred: {3}{1}Description: {4}{1}GAB Version: {5}",V.Ambient.ScriptPath,V.Ambient.Newline,V.Ambient.CurrentSubroutine,V.Ambient.ErrorNumber,V.Ambient.ErrorDescription,V.Ambient.GABVersion,v.Ambient.SubroutineCalledFrom,V.Local.sError)
+	F.Intrinsic.UI.Msgbox(V.Local.sError)
+	f.Intrinsic.Control.CallSub("Unload")
+F.Intrinsic.Control.EndTry
+Program.Sub.Finalize_ETC_NextMonth.End
+
+Program.Sub.Comments.Start
+${$0$}$$}$BAO$}$3/21/2018 8:59:51 AM$}$False
+${$3$}$0$}$$}$0$}$-1$}$$}$12:00:00 AM$}$
+'BN, Feb 20, 2018
+This program will input estimated values of Labor,Material,Outside for months for a particular Group of a Phase of a Project.
+1/The script GCG_3855_PROJ_PHS.g2u will receive the inputs:
+-User will select Project and Phase, the gsGroup will be populated.
+-Now user will select the start month they want to do the estimates. Then user will enter the number of months they want to estimate.
+For example: if start month is Jan 2018 and number of months is 3, the months to be input are: 2018/01, 2018/02, 2018/03
+-User will select the Group to input, then click ETC in-line button, the gsETC for that Group will be populated. If there are already data for a particular month in the database GCG_3855_ETC, it will be pulled in.
+-Save button will save data to GCG_3855_ETC having the estimates of Labor <> 0 or Material <> 0 or Outside <> 0
+-Comments for each Phase will be saved to GCG_3855_PROJ_PHS.
+2/The script GCG_3855_Excel will export the values to a csv file.
+-User will select the project to export: can be 1, multiple, or all projects.
+-Click OK to export to csv file as a report.
+-The program will look up the data from PROJECT_CURR_BUDG and only data from GCG_3855_ETC having Year_Month later that the current month.
+
+
+
+'f.Intrinsic.Control.For(v.Local.i1,0,v.DataTable.dtETCPrj.RowCount--,1)
+'	'First date of the month for each month
+'	F.Intrinsic.Date.DateSerial(v.DataTable.dtETCPrj(v.Local.i1).ETC_Year!FieldValString,v.DataTable.dtETCPrj(v.Local.i1).ETC_Month!FieldValString,1,v.Local.dDateHold)
+'	f.Data.DataTable.SetValue("dtETCPrj",v.Local.i1,"FDoMDate",v.Local.dDateHold)
+'f.Intrinsic.Control.Next(v.Local.i1)
+'f.Intrinsic.String.Build("FDoMDate > #{0}#",v.Global.sReportDateMMsDDsYYYY,v.Local.sFilter)
+'f.Data.DataView.Create("dtETCPrj","dtETCPrjDV",22,v.Local.sFilter,"")
+'f.Data.DataView.ToDataTable("dtETCPrj","dtETCPrjDV","dtHold",True)
+'f.Data.DataTable.Close("dtETCPrj")
+'f.Data.DataView.Create("dtHold","dtHoldDV")
+'f.Data.DataView.ToDataTable("dtHold","dtHoldDV","dtETCPrj",True)
+'f.Data.DataTable.Close("dtHold")
+
+Program.Sub.Comments.End
