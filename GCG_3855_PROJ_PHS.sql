@@ -1,0 +1,5 @@
+ CREATE TABLE "GCG_3855_PROJ_PHS"(
+ "PROJECT" VARCHAR(7),
+ "PHASE" VARCHAR(4),
+ "Prod_Comments" VARCHAR(500),
+ "Eng_Comments" VARCHAR(500) );
