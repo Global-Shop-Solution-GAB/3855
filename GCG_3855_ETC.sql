@@ -1,0 +1,16 @@
+CREATE TABLE "GCG_3855_ETC" (
+ "PROJECT" VARCHAR(7),
+ "PHASE" VARCHAR(4),
+ "ETC_Group" VARCHAR(20),
+ "ETC_Year" INTEGER,
+ "ETC_Month" INTEGER,
+ "ETC_Hour" NUMERIC(14,2),
+ "ETC_DollarPerHour" NUMERIC(14,2),
+ "ETC_Labor" NUMERIC(14,2),
+ "ETC_Material" NUMERIC(14,2),
+ "ETC_Outside" NUMERIC(14,2),
+ "ETC_Revenue" NUMERIC(14,2),
+ "ETC_Value" NUMERIC(14,2),
+ "Year_Month" CHAR(8),
+ "FDoMDate" DATE,
+ "FDoMDate2" INTEGER );
